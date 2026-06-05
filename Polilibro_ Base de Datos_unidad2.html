@@ -103,170 +103,377 @@
     </div>
 
    <br><br>
+   <div class="pleca-temas">El Modelo Relacional</div>
+        <br>
+
         
-  <div class="pleca-temas">2.1. Modelo Relacional de Bases de Datos.</div>
-      
-  <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/2_1_banner.jpg" alt="Modelo Relacional" width="720" height="220"></center><br>
-      
-  <p>El Modelo Relacional es el paradigma más utilizado en la actualidad para la gestión y modelado de datos. Propuesto originalmente por Edgar F. Codd en 1970, se basa en la teoría matemática de conjuntos y en la lógica de predicados para organizar la información en tablas independientes pero interconectadas entre sí.<br>
-    Este modelo permite representar la realidad del negocio de una manera matemática, formal y estructurada, garantizando que el acceso y la manipulación de la información se realice de forma consistente, segura y eficiente a través de lenguajes estandarizados como SQL.<br>
-  </p>
-  <p>El estudio del modelo relacional abarca cinco pilares esenciales que permiten entender cómo se estructuran y controlan los datos:</p>
-    <ul>
-        <li>Estructura y características fundamentales de las tablas y atributos.</li>
-        <li>Operaciones lógicas y algebraicas que apoyan el modelo.</li>
-        <li>Mecanismos de integridad mediante Llaves Primarias y Foráneas.</li>
-        <li>Representación avanzada de relaciones n-arias y recursivas.</li>
-        <li>Aplicación práctica de estos elementos en un modelo de datos integrado.</li>
-    </ul>
-<p></p>
-    
-<h4>2.1.1. Estructura y características del modelo relacional de bases de datos</h4>
-<p>La estructura central del modelo relacional es la <b>relación</b>, conocida comúnmente en la práctica como una tabla. Una base de datos relacional consiste exclusivamente en una colección de estas relaciones interconectadas.<br>
-El analista y el diseñador de bases de datos deben comprender las propiedades rígidas que posee este modelo para asegurar que los datos almacenados mantengan un orden lógico estricto. Cada elemento del modelo tiene una denominación matemática formal y un equivalente práctico dentro del software de bases de datos.<br>
-Utilizando este enfoque, se eliminan las ambigüedades en el almacenamiento y se facilita que tanto los desarrolladores como los sistemas de consulta interactúen de forma predecible con la información.</p><br>
+        <p><b><h3>¿Qué es?</h3></b><br>
+        El modelo relacional es una forma de ver los datos que consta de:<br>
+        Una representación de los datos mediante tablas llamadas "relaciones" (Estructura)<br>
+        Un conjunto de restricciones que permiten la consistencia de los datos (Integridad)<br>
+        Un conjunto de operadores que permiten manipular dichos datos (Lenguaje de Manipulación)</p>
 
-<p>Las características y componentes fundamentales de una relación (tabla) son los siguientes:</p>
+        <h2>Estructura de Datos Relacional</h2>
 
-  <p class="titulin">Componentes Clave de una Relación</p>
-  
-  <p><b>Tuplas (Filas / Registros):</b> Representan cada uno de los elementos individuales u objetos que forman parte de la tabla. Cada tupla es un conjunto de datos que corresponden a una misma entidad y es única dentro de la relación; no pueden existir dos tuplas idénticas.<br>
-  </p>
-
-  <p><b>Atributos (Columnas / Campos):</b> Representan las propiedades, características o cualidades de la entidad que se está modelando. Cada atributo tiene un nombre único en la tabla y describe un dato específico de la tupla.<br>
-  </p>
-<p><b>Dominios:</b> Es el conjunto de valores válidos y atómicos (indivisibles) que un atributo puede adoptar. Por ejemplo, el dominio para un atributo "Edad" podría ser el conjunto de números enteros positivos entre 1 y 120.<br>
-</p>
+		<br>
 <br>
-  <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_9.jpg" class="img-fluid" alt="Estructura del Modelo Relacional" width="850" height="550">  <p class="tx-figura">Figura 9. Estructura y Componentes de una Relación</p></center>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be26.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+
+
+
+        <h2>Bases de Datos Relacionales Terminología</h2>
+	<br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be27.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+
+
+
+        <div class="pleca-temas">Propiedades de las Relaciones</div>
+        <br>
+        <p><b>No existen tuplas repetidas:</b><br>
+        Cada relación es un conjunto matemático; por ende, no tiene elementos repetidos.<br>
+        Las tuplas no están ordenadas (de arriba a abajo).<br>
+        Los atributos no están ordenados (de izquierda a derecha).<br>
+        Todos los valores de los atributos son atómicos. Es decir, cada tupla contiene exactamente un valor para cada atributo.</p>
+
+        <div class="pleca-temas">Restricciones de Integridad (Constraints)</div>
+        <br>
+        <p>Aseguran que las modificaciones realizadas no originen pérdida de consistencia de los datos</p>
+        
+        <p><b>Restricciones de Dominio:</b><br>
+        Especifican el conjunto de valores que se puede asociar a un atributo.</p>
+        
+        <p><b>Restricciones de Clave Primaria</b><br>
+        Todas las tuplas de una relación son distintas, es decir, debe haber siempre una clave primaria que garantice esta unicidad</p>
+
+        <div class="pleca-temas">Restricciones de Integridad (Constraints)</div>
+        <br>
+        <p><b>Restricciones de Clave Primaria</b><br>
+        La clave primaria (PK) es un identificador único para una relación.<br>
+        La clave primaria puede ser compuesta (más de un atributo)<br>
+        Es posible que en una relación haya más de un identificador único o "clave candidata":<br>
+        <b>Unicidad:</b> En cualquier momento dado, no existen dos tuplas en R con el mismo valor de K.<br>
+        <b>Minimalidad:</b> Si K es compuesta, no será posible eliminar ningún componente de K, sin destruir la propiedad de unicidad.<br>
+        En estos casos una debe ser escogida como clave primaria y las otras se denominarán claves alternantes únicas.</p>
+
+        <div class="pleca-temas">Restricciones de Integridad (Constraints)</div>
+        <br>
+        <p><b>Restricciones sobre nulos:</b><br>
+        Especifican cuándo un atributo puede no tener un valor asociado por ser desconocido o no aplicable a alguna instancia en particular</p>
+        
+        <p><b>Restricciones de Integridad de entidades:</b><br>
+        Ningún componente de la clave primaria de una relación base puede aceptar nulos (un valor desconocido o no aplicable)</p>
+
+        <div class="pleca-temas">Restricciones de Integridad (Constraints)</div>
+        <br>
+        <p><b>Restricciones de Integridad Referencial:</b><br>
+        Aseguran que un valor que aparece en una relación para un conjunto de atributos dado, aparezca también para un conjunto de atributos en otra relación:<br>
+        "La base de datos no debe contener valores de clave foránea sin concordancia"</p>
+
+        <div class="pleca-temas">Restricciones de Integridad (Constraints)</div>
+        <br>
+        <p><b>Restricciones de Integridad Referencial:</b><br>
+        Una clave foránea o ajena es un atributo o conjunto de atributos (clave foránea compuesta) de una relación R2, cuyos valores deben concordar con los de la clave primaria de alguna relación R1 (donde: R1 y R2 no necesariamente son distintos).</p>
+
+        <div class="pleca-temas">Traducción de un modelo de información en una BD Relacional</div>
+        <br>
+        <p><b>Traducción de un modelo ….</b></p>
+        <p>Cada entidad se convierte en una Relación<br>
+        El identificador único se convierte en la clave primaria<br>
+        Cada atributo se convierte en una columna de su respectiva Relación<br>
+        Las relaciones se implementan colocando la clave primaria de una tabla en la tabla relacionada, como clave externa.</p>
+
+        <p><b>Traducción de un modelo…….</b></p>
+        <p>Antes de generar un diseño relacional a partir de un modelo, hay que asegurarse que esté completo:<br>
+        Tipos de dato de los atributos<br>
+        Cardinalidad de las relaciones<br>
+        Identificadores de las entidades (claves primarias)</p>
+
+        <div class="pleca-temas">Conversión del Modelo E-R al Modelo R</div>
+
+
+
+<br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be28.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+<br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be29.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+        <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be30.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+        <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be31.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+       <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be32.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+       <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be33.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+   <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be34.png" class="img-fluid" width="1000" height="600" alt="Independencia de datos">
+        </center>	
+
+
+   <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be35.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+   <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be36.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
   <br>
-
-  <p>
-    Existen propiedades críticas que toda tabla relacional debe cumplir sin excepción: el orden de las tuplas y de los atributos no afecta en absoluto el significado de los datos; cada intersección entre una fila y una columna debe contener exactamente un único valor atómico (no se permiten listas ni arreglos internos); y finalmente, no pueden existir columnas con el mismo nombre dentro de una misma tabla.<br>
-    Estas restricciones son las que dotan al modelo de su robustez matemática y permiten que los motores de bases de datos modernos optimicen las consultas a gran velocidad de manera transparente para el usuario.
-</p>
-    
-<h4>2.1.2. Operaciones que apoyan el modelo relacional</h4>
-
-  <p>Para manipular, consultar y extraer información útil de una base de datos relacional, el modelo se apoya en el <b>Álgebra Relacional</b>. Se trata de un conjunto de operaciones matemáticas que toman una o más relaciones como entrada y producen una nueva relación como resultado, sin modificar las tablas originales.</p>
-    <p class="titulin">Operaciones Fundamentales del Álgebra Relacional</p>    
-<ol>
-    <li><b>Selección (Sigma - σ):</b> Permite filtrar filas. Selecciona un subconjunto de tuplas que cumplen con una condición o predicado específico.</li>
-    <li><b>Proyección (Pi - π):</b> Permite filtrar columnas. Selecciona ciertos atributos de una tabla y descarta los demás, eliminando duplicados si los hubiera.</li>
-    <li><b>Unión (∪):</b> Combina las tuplas de dos tablas distintas. Ambas tablas deben ser compatibles, es decir, tener el mismo número de columnas y dominios idénticos.</li>
-    <li><b>Diferencia de Conjuntos (−):</b> Devuelve las tuplas que están en la primera tabla pero que no aparecen en la segunda tabla.</li>
-    <li><b>Producto Cartesiano (×):</b> Combina todas las tuplas de la primera tabla con todas las tuplas de la segunda tabla, creando todas las permutaciones posibles.</li>
-    <li><b>Reunión (Join - ⨝):</b> Es la operación más crucial en la práctica. Combina tuplas de dos o más relaciones basándose en una condición de emparejamiento (generalmente vinculando una Llave Primaria con una Llave Foránea).</li>
-  </ol>
-
 <br>
-<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_10.jpg" class="img-fluid" alt="Operaciones del Modelo Relacional" width="850" height="550">   <p class="tx-figura">Figura 10. Operaciones de Selección, Proyección y Join</p></center>
-<p>Estas operaciones teóricas constituyen la base de lo que el lenguaje SQL ejecuta en la realidad cuando escribimos sentencias como SELECT, WHERE y JOIN, permitiendo cruzar grandes volúmenes de datos con precisión matemática. </p>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be37.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
 
-<h4>2.1.3. Llave primaria, Llave Foránea e Integridad de bases de datos relacionales</h4>
+
+<div class="pleca-temas">¿Por qué es Necesaria la Transformación?</div>
+        <br>
+        <p>El modelo ERE es un modelo de datos conceptual de alto nivel.<br>
+        Facilita las tareas de diseño conceptual de bases de datos.<br>
+        Es necesario traducirlo a un esquema que sea compatible con un SGBD.<br>
+        El Modelo Relacional es utilizado por la mayoría de los SGBD existentes en el mercado.</p>
+
+        <h3>Transformación del Modelo ER al Modelo Relacional</h3>
+        <br>
+        <p>Modelo Entidad Relación (Básico), transformación al modelo Relacional de:</p>
+
+
+
   <br>
-<p>La consistencia y la veracidad de los datos dentro de un sistema dependen por completo de los mecanismos de restricción y de las llaves que se definan en la estructura. Sin ellas, los datos podrían duplicarse o perder su coherencia lógica, convirtiendo a la base de datos en una fuente de información errónea.</p>
-<p>Para interconectar las tablas de manera segura, el modelo relacional implementa dos conceptos operativos fundamentales:<br>
-  La <b>Llave Primaria (Primary Key - PK)</b> es un atributo o conjunto mínimo de atributos que identifica de forma única e inequívoca a cada tupla dentro de una tabla. No puede haber dos filas con la misma PK y ningún componente de la PK puede quedar vacío (NULL).<br>
-  La <b>Llave Foránea (Foreign Key - FK)</b> es un atributo en una tabla cuyo valor debe coincidir obligatoriamente con la Llave Primaria de otra tabla (o ser completamente nulo). Es el mecanismo físico que se utiliza para establecer los enlaces y relaciones entre los diferentes registros de la base de datos.</p>
-<p class="titulin">Reglas Generales de Integridad</p>
-  <ul>
-      <li><b>Integridad de Entidad:</b> Establece que ninguna llave primaria puede aceptar valores nulos (NULL), garantizando que cada registro siempre pueda ser identificado.</li>
-      <li><b>Integridad Referencial:</b> Asegura que si existe una llave foránea, su valor debe corresponder obligatoriamente a una llave primaria válida y existente en la tabla de origen, evitando los "registros huérfanos".</li>
-      <li><b>Integridad de Dominio:</b> Restringe los valores que puede tomar un atributo a aquellos que pertenezcan a su tipo de dato, rango o restricciones específicas previamente configuradas.</li>
-</ul>
-    <br>
-<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_11.jpg" class="img-fluid" alt="Llaves e Integridad" width="850" height="550">   <p class="tx-figura">Figura 11. Vinculación mediante Llaves Primarias (PK) y Foráneas (FK)</p></center>
-	</li>
-</ol>
-	 
-<h4>2.1.4. Relaciones n-arias y Relaciones recursivas</h4>
-      <br>
-<p>En el diseño del Modelo Relacional, la mayoría de los vínculos ocurren entre dos entidades (relaciones binarias). Sin embargo, la complejidad de las reglas de negocio a menudo exige representar escenarios donde intervienen múltiples entidades simultáneamente o donde una entidad se relaciona consigo misma.</p>
-<p>Cuando nos enfrentamos a estas situaciones especiales, el modelo aplica las siguientes estructuras:<br>
-Las <b>Relaciones n-arias</b> involucran a tres o más entidades al mismo tiempo (por ejemplo, una relación ternaria entre <i>Médico</i>, <i>Paciente</i> y <i>Medicamento</i> para registrar una receta). En el modelo relacional, estas relaciones no se pueden conectar directamente; requieren la creación de una nueva tabla intermedia que hereda las llaves primarias de todas las entidades participantes como llaves foráneas.<br>
-Las <b>Relaciones recursivas (o reflexivas)</b> ocurren cuando una entidad se relaciona con otra instancia de sí misma. Un ejemplo típico es una tabla de <i>Empleados</i> donde un empleado es jefe de otros empleados. Para resolver esto, la misma tabla aloja una Llave Foránea que apunta y hace referencia a la Llave Primaria de su propia estructura.</p>
-<p class="titulin">Consideraciones para Relaciones Especiales</p>
-<ul>
-  <li><b>Identificación del grado:</b> Determinar con precisión cuántas entidades participan en la regla de negocio para evitar fragmentar una relación n-aria en múltiples binarias incorrectas.</li>
-  <li><b>Atributos descriptivos:</b> Las tablas intermedias surgidas de relaciones n-arias pueden contener sus propios atributos, como fechas, cantidades o estados del vínculo.</li>
-  <li><b>Roles en recursión:</b> En las relaciones recursivas es fundamental asignar nombres claros al atributo de la llave foránea (por ejemplo, <i>id_supervisor</i> apuntando a <i>id_empleado</i>) para distinguir el rol que juega cada registro.</li>
-</ul>
- <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_12.jpg" class="img-fluid" alt="Relaciones Especiales" width="850" height="550">   <p class="tx-figura">Figura 12. Estructura de Relaciones Ternarias</p></center>
-      <p>Al aplicar correctamente estas estructuras avanzadas, el diseñador garantiza que las dependencias lógicas complejas del mundo real queden perfectamente plasmadas en el esquema físico, impidiendo la pérdida de contexto en las consultas SQL multitabla.</p>
-
-<h4>2.1.5. Aplicación de los elementos anteriores en Modelos Relacionales</h4>
-    <p>La consolidación de un Modelo Relacional requiere integrar todos los conceptos previos (tablas, llaves, restricciones e integridades) en un esquema unificado. Este proceso transforma las reglas de negocio abstractas en un plano lógico definitivo y funcional para el sistema de información.</p>
-<ol>
-    <li>
-      <p><b>Mapeo de Entidades a Tablas:</b> Cada conjunto de objetos del negocio se consolida como una relación física con sus respectivas columnas y filas.</p>
-    </li>
-    <li>
-      <p><b>Asignación Inequívoca de PKs:</b> Se asegura que cada tabla cuente con un identificador único que controle la integridad de la entidad.</p>
-    </li>
-    <li>
-      <p><b>Establecimiento de Vínculos mediante FKs:</b> Se trazan las uniones lógicas entre tablas, garantizando que los registros relacionados sigan de forma estricta las reglas de integridad referencial.</p>
-    </li>
-</ol>
-      <p>Esta visión integrada actúa como el puente definitivo hacia la etapa de diseño y normalización de la base de datos.</p>
-    <br>
-
-<div class="pleca-temas">2.2 Diseño de BDs relacionales transformando el Modelo conceptual en Modelo Relacional.</div>
 <br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be38.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
 
-<h4>2.2.1. Proceso de normalización</h4>
-<p>La normalización es una técnica matemática y lógica aplicada al modelo relacional para asegurar que la base de datos sea eficiente, esté libre de redundancias y protegida contra anomalías de inserción, actualización o borrado de datos. Consiste en pasar los datos por una serie de reglas conocidas como <b>Formas Normales</b>.</p>
 
-<p class="titulin">Etapas del Proceso de Normalización</p>
-<ul>
-  <li><b>Primera Forma Normal (1FN) - Atomicidad:</b> Exige que todos los atributos de una tabla contengan valores atómicos (indivisibles) y que no existan grupos repetitivos ni listas de valores dentro de una sola celda.</li>
-  <li><b>Segunda Forma Normal (2FN) - Dependencia Funcional Completa:</b> Cumpliendo la 1FN, exige que todos los atributos que no forman parte de la llave primaria dependan por completo de toda la llave primaria, y no de una parte de ella (aplica principalmente para llaves compuestas).</li>
-  <li><b>Tercera Forma Normal (3FN) - Dependencia No Transitiva:</b> Cumpliendo la 2FN, exige que las columnas que no son llaves primarias dependan directamente de la llave primaria y no a través de terceras columnas intermedias.</li>
-</ul>
+
+
+  <br>
 <br>
-<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_13.jpg" class="img-fluid" alt="Proceso de Normalización" width="850" height="550">   <p class="tx-figura">Figura 13. Transformación de Tablas a través de la 1FN</p></center>
-<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be39.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
 
+  <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be40.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+
+<h3>Transformación de Entidades (Paso 1)</h3>
+<p>En caso de que más de un atributo sea parte de la clave primaria:
+</p>
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be41.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+<h3>Transformación de Entidades (Paso 1)</h3>
+        <br>
+        <p>Para cada tipo normal (no débil) de entidad E del modelo ERE se define una relación R.<br>
+        En la relación R se incluyen todos los atributos simples de E.<br>
+        Se incluyen en R los atributos simples que sean componentes de los atributos compuestos.<br>
+        Se eligen todos los atributos clave de E como atributos claves de R.</p>
 
 <br>
-<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_14.jpg" class="img-fluid" alt="Proceso de Normalización" width="850" height="550">   <p class="tx-figura">Figura 14. Transformación de Tablas a través de la 2FN</p></center>
+<div class="pleca-temas">Transformación de Entidades (Paso 2)</div>
+
+
+
+
+
+
+
+ <br>
 <br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be42.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
 
+
+
+
+<h3>Transformación de Entidades Débiles (Paso 2)</h3>
+
+
+
+
+ <br>
 <br>
-<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/u2_15.jpg" class="img-fluid" alt="Proceso de Normalización" width="850" height="550">   <p class="tx-figura">Figura 15. Transformación de Tablas a través de la 3FN</p></center>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be43.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+
+<div class="pleca-temas">Transformación de Entidades Débiles (Paso 2)</div>
+        <br>
+        <p>Para cada entidad débil D del modelo ERE y su respectivo vínculo con su entidad propietaria E se define una relación R.<br>
+        La relación R tiene todos los atributos de la entidad débil D más los atributos que conforman la clave primaria de la entidad propietaria E.<br>
+        La clave primaria de la relación R está formada por los atributos de la clave primaria de la entidad propietaria E más los atributos de la clave parcial de D.</p>
+
+
+
+        <h3>Transformación de Vínculos 1:N (Paso 3)</h3>
+
+
+
+ <br>
 <br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be44.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+<p>Para cada vínculo 1:N entre dos entidades (no débiles) E y F donde F está del lado N del vínculo, se añade a la relación correspondiente a la entidad F de alguna de las entidades la clave primaria de la otra entidad relacionada. </p>
 
 
 
 
-<h4>2.2.2. Conversión de cardinalidad a posición de llaves primarias y foráneas</h4>
-<p>Al transformar un modelo conceptual (como un Diagrama Entidad-Relación) al modelo relacional, las cardinalidades dictan exactamente en qué lugar físico deben ubicarse las llaves para conectar las tablas de forma correcta:</p>
-
-<ul>
-  <li><b>Relaciones de Uno a Muchos (1:N):</b> La regla general establece que la Llave Primaria del lado "Uno" se copia y se coloca como Llave Foránea (FK) en la tabla del lado "Muchos".</li>
-  <li><b>Relaciones de Muchos a Muchos (N:M):</b> No pueden representarse directamente con una llave foránea simple. Se requiere crear una nueva <i>Tabla Intermedia</i> (o tabla de unión) cuyas llaves primarias combinadas correspondan a las llaves primarias de las dos tablas originales.</li>
-  <li><b>Relaciones de Uno a Uno (1:1):</b> La Llave Primaria de una de las tablas se coloca como Llave Foránea en la otra tabla. La elección de cuál tabla recibe la FK suele depender de cuál entidad tiene una participación obligatoria en la relación.</li>
-</ul>
+ <br>
 <br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be45.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
 
-<h4>2.2.3. Aplicación de características del modelo relacional</h4>
-<p>Como paso final para consolidar el diseño lógico, cada atributo de las tablas resultantes debe recibir sus especificaciones físicas definitivas, asegurando el control total sobre el comportamiento de los datos:</p>
 
-<ul>
-  <li><b>Tipo de Dato y Longitud:</b> Determina la naturaleza de la información (VARCHAR para textos especificando su tamaño máximo, INT o DECIMAL para datos numéricos, DATE/DATETIME para marcas de tiempo).</li>
-  <li><b>Característica de Nulos (NULL / NOT NULL):</b> Define de forma estricta si un campo puede quedar vacío o si es obligatorio capturar un valor al insertar un registro.</li>
-  <li><b>Integridad de Dominio:</b> Restricciones que validan que el dato ingresado pertenezca a un rango o lista de valores específicos antes de ser guardado en el disco.</li>
-  <li><b>Integridad Referencial:</b> Configuración de las acciones en cascada (ON DELETE / ON UPDATE: CASCADE, RESTRICT o SET NULL) que dictan cómo reaccionará la base de datos si se elimina o modifica un registro que está vinculado a otras tablas.</li>
-</ul>
+
+ <br>
 <br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be46.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+<p>• Para cada vinculo 1:1 entre dos entidades (no débiles) E y F se añade a la relación de alguna de las entidades, a modo de clave foránea, la clave primaria de la otra entidad relacionada. 
+<br>
+  • Se especifica una restricción que define que la clave foránea añadida debe ser única (no se puede repetir, porque de hacerlo entonces sería una relación 1:N 
+</p>
 
 
 
 
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be47.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+<h3>Transformación de Vínculos M:N </h3>
+
+
+
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be48.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be49.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+
+<div class="pleca-temas">Transformación de Vínculos M:N</div>
+        <br>
+        <p><b>Paso 5</b><br>
+        • Para cada vinculo M:N entre dos entidades se crea una relación R.<br>
+        • Los atributos de la relación R serán las claves primarias de las entidades relacionadas mas los atributos propios del vínculo.<br>
+        • La clave primaria de la relación R será el conjunto de todos los atributos que sean claves primarias de las entidades relacionadas.</p>
+
+        <div class="pleca-temas">Transformación de Atributos Multivaluados (Paso 6)</div>
+
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be50.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+
+ <br>
+<br>
+		<center>
+          <img src="/home/bacu/Escritorio/proyecto practicas profesionales/Libro digital_ Requerimientos de Software_unidad2_files/image_cf8be51.png" class="img-fluid" width="800" height="400" alt="Independencia de datos">
+        </center>	
+
+<p>• Para cada atributo multivaluado se creará una relación R.<br>
+        • Los atributos de la relación R serán la clave primaria de las entidad a la cual pertenece el atributo multivaluado más el (o los) atributos correspondientes al atributo multivaluado.<br>
+        • La clave primaria de la relación R será la clave primaria de la entidad a la cual pertenece el atributo multivaluado más el (o los) atributos correspondientes al atributo multivaluado</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 <br>
 		<a href="Polilibro_ Base de Datos_unidad1.html" target="_self"><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/btn_atras.png" class="bot" style="float:left;"></a>
 		<a href="Polilibro_ Base de Datos_unidad3.html" target="_self"><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/btn_adelante.png" class="bot" style="float:right;"></a>
 	</div>
+
+
+
+
+
+
+  
 	 <!--- 
 	  <div id="pleca_botones"><center><a href="https://www.sites.upiicsa.ipn.mx/uteycv/requerimientos/pdf/pr%C3%A1ctica_2_u2.pdf" target="_blank"><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/btn_ejercicios2.png" class="descargable" alt="descargar ejercicios"></a> &nbsp; &nbsp; <a href="https://www.sites.upiicsa.ipn.mx/uteycv/requerimientos/pdf/ejemplo_de_soluci%C3%B3n_p2u2.pdf" target="_blank"><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad2_files/btn_solucion2.png" class="descargable" alt="descargar soluciones"></a></center></div>
 --->

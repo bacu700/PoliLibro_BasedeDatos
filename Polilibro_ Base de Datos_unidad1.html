@@ -117,395 +117,305 @@
 
 			<br><br>
 
-
-		
-		<div class="pleca-temas">1.1. Elementos</div>
-		<br>
-	  <center><img src="Polilibro_%20Requerimientos%20de%20software_files/1_1_banner.jpg"></center>
-		<p><br>
-		 <b> El Contenedor de Datos <br></b>
-
-    <b>Tablas (Entidades):</b> Es la unidad básica donde se guarda la información. Piensa en ellas como pestañas de un archivo Excel (ej. una tabla de "Clientes", otra de "Productos").
-<br>
-    <b>Campos (Columnas/Atributos):</b> Definen qué tipo de dato se va a guardar. Si la tabla es "Clientes", los campos serían "Nombre", "Correo" o "Teléfono".
-<br>
-    <b>Registros (Filas/Tuplas):</b> Es una unidad individual de datos. Siguiendo el ejemplo, una fila completa con los datos de "Juan Pérez" es un registro.<br>
-		  <br>
-		  <b>Las Llaves (Identificadores)</b>
-		  <br>
-
-Para que la base de datos sea eficiente y no haya confusiones, usamos "llaves":
-<br>
-    <b>Llave Primaria (Primary Key):</b> Es un código único que identifica a un registro y no se puede repetir. Por ejemplo, tu número de identificación oficial o un ID de cliente (ID_001).
-<br>
-    <b>Llave Foránea (Foreign Key):</b> Es una llave primaria de una tabla que aparece en otra tabla para conectarlas. Sirve para decir: "Este pedido (en la tabla Pedidos) pertenece a este Cliente (en la tabla Clientes)".<br>
-		  <br>
-	   <b> Esquemas y Relaciones</b>
-<br>
-    <b>Esquema:</b> Es el mapa o diseño lógico de toda la base de datos. Muestra cómo se conectan todas las tablas entre sí.
-<br>
-    <b>Relaciones:</b> Definen cómo interactúan los datos. Pueden ser:
-
-        Uno a muchos: Un cliente puede tener muchos pedidos.
-
-        Muchos a muchos: Muchos estudiantes pueden inscribirse en muchos cursos diferentes.</p>
-        <div>
-          <div> </div>
-      </div>
-<center><img src="Polilibro_%20Requerimientos%20de%20software_files/u1_1.jpg" class="img-fluid" width="850" height="550">	<p class="tx-figura">Figura 1. Bases de datos</p></center>
-		
-		
-		
-		
-		<h4>1.1.1. Ambiente de bases de datos e historia del manejo de información</h4>
-		<p><b>El Ambiente de las Bases de Datos</b></p>
-
-<p>Un "ambiente" de base de datos no es solo el software donde se guardan los datos, sino un ecosistema compuesto por cinco componentes que trabajan en conjunto:
-<br>
-    Hardware: Los servidores, discos de almacenamiento y memoria RAM donde reside la información física.
-<br>
-    Software (DBMS): El Sistema de Gestión de Bases de Datos (como MySQL, Oracle o SQL Server) que actúa como interfaz entre el usuario y los datos físicos.
-<br>
-    Datos: El recurso más valioso. Incluyen los datos operativos y los metadatos (datos sobre los datos, como diccionarios de datos).
-<br>
-    Procedimientos: Las reglas y normas que rigen cómo se capturan, aseguran y respaldan los datos.
-<br>
-  <br>  <b>Usuarios:</b>
-<ul>
-       <li>DBA (Administrador): Responsable de la salud y seguridad del sistema.</li> 
-
-        <li>Diseñadores: Quienes crean la estructura de las tablas.</li>
-
-        	<li>Usuarios finales: Quienes consultan la información para tomar decisiones.</li>
-</ul>
-		</p>
-
-<p><b>Historia del Manejo de Información:</b></p>
-<ul>
-	<p>A. La Era Manual (Pre-1950)
-
-Antes de las computadoras, la información se gestionaba en archivos físicos (papel y carpetas).
-
-    Problema: La redundancia era masiva, el acceso era lentísimo y era imposible cruzar datos de diferentes departamentos de forma eficiente.
-</p>
-	<p>
-B. El Modelo de Archivos Planos (1950 - 1960)
-
-Con la llegada de las primeras computadoras, los datos se guardaban en cintas magnéticas.
-
-    Características: Eran "archivos planos" (como un bloc de notas gigante).
-
-    Limitación: Si querías leer el dato final, tenías que recorrer toda la cinta desde el inicio (acceso secuencial). No había relación entre archivos.</p>
-
-	<p>
-C. El Modelo Jerárquico y de Red (1960 - 1970)
-
-Para mejorar el acceso, se crearon estructuras más complejas:
-
-    Jerárquico: Los datos se organizaban como un árbol genealógico (un padre, muchos hijos).
-
-    Red: Similar al jerárquico, pero un "hijo" podía tener varios "padres".
-
-    Falla: Eran sistemas muy rígidos; si querías cambiar la estructura, tenías que reprogramar casi todo el sistema.
-<br>
-</p>
-	<p>
-D. La Revolución Relacional (1970 - Actualidad)
-
-En 1970, Edgar F. Codd (investigador de IBM) publicó un modelo basado en la teoría de conjuntos: el Modelo Relacional.
-
-    Hito: Propuso que los datos se guardaran en tablas simples y se relacionaran mediante llaves.
-
-    SQL: En los 80, SQL se convirtió en el estándar, permitiendo que cualquier persona con conocimientos básicos pudiera consultar datos complejos.
-<br>
-</p>
-	<p>
-E. La Era Post-Relacional y Big Data (2000 - Presente)
-
-Con el auge de redes sociales y sensores, el modelo de tablas ya no era suficiente para todo.
-
-    NoSQL: Surgen bases de datos no relacionales para manejar datos no estructurados (como documentos, videos o grafos).
-
-    Cloud Databases: La transición a la nube, donde la escalabilidad es casi infinita.
-</p>	
-
-</ul>
-		<center><img src="Polilibro_%20Requerimientos%20de%20software_files/u1_2.jpg" class="img-fluid" width="850" height="550">	<p class="tx-figura">Figura 2. Historia</p></center>
-
-		<h4>1.1.2. Ambiente de informacion con Sistemas de archivos y con tecnologia de Bases de Datos</h4>
-		<p>Ambiente con Sistemas de Archivos (El Enfoque Tradicional)</p>
-			<ol>
-				<p>Antes de que existieran los sistemas de bases de datos centralizados, las empresas desarrollaban software donde cada aplicación o departamento de la empresa era dueño de sus propios archivos de datos.
-
-Por ejemplo, el departamento de Ventas tenía su propio archivo de "Clientes.txt" y el departamento de Facturación tenía su propio archivo "Facturas.dat".</p>
-			</ol>
-		<p><b>El enfoque generaba varios problemas:</b></p>
-		
-		<p><li>Redundancia de Datos: Como los sistemas estaban separados, los mismos datos se duplicaban. El nombre y dirección de un cliente podían estar guardados en tres archivos diferentes de tres departamentos distintos.</li>
-
-		<li>Inconsistencia de Datos: Si el cliente cambiaba de domicilio, Ventas podía actualizar su archivo, pero Facturación seguía usando la dirección vieja. Los datos dejaban de ser confiables.</li>
-
-		<li>Dependencia Estructura-Programa: El formato físico de los datos (cómo estaban ordenados los bytes en el disco) estaba escrito directamente dentro del código del programa. Si querías añadir un campo nuevo (por ejemplo, el código postal), tenías que modificar y reinstalar todos los programas que usaran ese archivo.</li>
-
-		<li>Falta de Compartición: Era extremadamente difícil que un departamento consultara de forma segura o rápida los datos de otro.</li>
-		</p>
-
-		<p><b>Ambiente con Tecnología de Bases de Datos (El Enfoque Moderno)</b></p>
-<p>Este enfoque cambia por completo la filosofía: en lugar de que cada aplicación tenga sus propios archivos, todos los datos de la organización se centralizan en un único repositorio lógico, el cual es administrado exclusivamente por el DBMS (Sistema de Gestión de Bases de Datos).
-
-Las aplicaciones ya no tocan los archivos directamente; le piden los datos al DBMS a través de un lenguaje estándar (como SQL).</p>
-
-<p><b>Ventajas y Elementos Clave:</b></p>
-<p>
-	<li>Independencia de Datos: La estructura física de los datos está separada de los programas de aplicación. Puedes añadir columnas o cambiar el tipo de almacenamiento en el disco sin romper el software que usan los empleados.</li>
-
-	<li>Redundancia Mínima y Controlada: Cada dato se guarda, idealmente, en un solo lugar. Si el cliente cambia su dirección, se actualiza en una sola tabla y el cambio se refleja instantáneamente para toda la empresa.</li>
-</li>
-<li>
-Integridad y Seguridad Centralizada: El DBMS se encarga de aplicar las reglas de negocio (ej. "ningún salario puede ser menor a cero") y los permisos de acceso (ej. "Ventas no puede ver los datos de Recursos Humanos") en un solo punto de control.
-</li>
-<li>
-Acceso Concurrente: Permite que miles de usuarios y aplicaciones lean y escriban datos al mismo tiempo sin bloquearse mutuamente ni corromper la información.
-</li>
-</p>
-
-
-		<h4>1.1.3. Aspetos basicos de Bases de Datos Software de bases de datos Relacionales y No-SQL.</h4>
-
-		<p>Cuando diseñamos o administramos una arquitectura de datos, la primera gran decisión es elegir entre el modelo Relacional (SQL) y el modelo No-Relacional (No-SQL).</p>
-		<p><b>Software de Bases de Datos Relacionales (RDBMS / SQL).</b></p>
-
-		<p>Se basan en el modelo relacional matemático. Toda la información se organiza en estructuras rígidas y bidimensionales: las tablas..</p>
-		
-		
-		<center><img src="Polilibro_%20Requerimientos%20de%20software_files/u1_3.jpg" class="img-fluid" width="850" height="550">	<p class="tx-figura">Figura 3. Ejemplo de una base de datos relacional</p></center>
-		
-		<p><b>Aspectos Básicos:</b></p>
-
-		<p><li>Esquema Estricto (Predefinido): Antes de insertar un solo dato, debes definir la estructura exacta: qué tablas existen, qué columnas tienen y qué tipo de dato acepta cada una (entero, texto, fecha).</li>
-
-		<li>Lenguaje Estándar: Utilizan SQL (Structured Query Language) para realizar consultas, inserciones y modificaciones.</li>
-</li>
-<li>
-Propiedades ACID: Es su mayor fortaleza. Garantizan que las transacciones sean seguras y confiables:
-<ol>
-
-    <li>Atomicidad: O se hace toda la operación o no se hace nada.
-	</li>
-    <li>Consistencia: Los datos siempre son válidos según las reglas del sistema.</li>
-
-    <li>Aislamiento: Las operaciones concurrentes no se estorban entre sí.</li>
-
-    <li>Durabilidad: Una vez guardado el dato, no se pierde ni ante un apagón.</li>
-	
-<li>
-Escalabilidad Vertical: Para soportar más carga, generalmente requieren un servidor más potente (más CPU, más RAM).</p>	
-	
-</li></ol> 	
-
-
-
-<p><b>Software de Bases de Datos No-Relacionales (No-SQL).</b></p>
-
-<p>
-	Nacieron a principios de los años 2000 para resolver los problemas de almacenamiento masivo y alta velocidad que el modelo relacional no podía manejar eficientemente (el fenómeno del Big Data y la web en tiempo real).
-
-</p>
-
-<p>
-	<b>Aspectos Básicos:</b>
-	<br>
-
-    <li>Esquema Flexible (Dinámico): No requieren una estructura fija. Un registro puede tener tres campos y el siguiente puede tener diez, sin necesidad de alterar la base de datos.
-	</li>
-	<li>
-    Sin Joins Complejos: Evitan las relaciones complejas entre tablas para ganar velocidad. En su lugar, los datos suelen estar "desnormalizados" (guardados juntos en el mismo sitio).
-</li>
-<li>
-    Teorema de CAP / Propiedades BASE: En lugar de la rigidez de ACID, priorizan la disponibilidad y la velocidad, aceptando una "consistencia eventual" (los datos se actualizarán en todos los servidores un poco más tarde, pero el sistema nunca se detiene).
-</li>
-<li>
-    Escalabilidad Horizontal: Diseñadas desde cero para distribuirse en decenas o cientos de servidores económicos en la nube.
-</li>
-</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	  
-	 	<center><img src="Polilibro_%20Requerimientos%20de%20software_files/u1_4.jpg" class="img-fluid" width="850" height="550">	<p class="tx-figura">Figura 4. SQL vs No SQL</p></center>
-	
-
-
-<h4>1.1.4. Ambiente y ventajas de los sistemas de información con tecnología de Bases de Datos</h4>
-        <p>La adopción de la tecnología de bases de datos dentro de los sistemas de información empresariales no solo optimiza el almacenamiento físico, sino que transforma la información en un activo estratégico disponible en tiempo real para la toma de decisiones.</p>
-        <p><b>Ventajas organizacionales y técnicas:</b></p>
-        <ul>
-            <li><b>Compartición de datos global:</b> Múltiples aplicaciones y usuarios de distintos departamentos acceden simultáneamente al mismo repositorio lógico de datos.</li>
-            <li><b>Estandarización de estructuras:</b> Se unifican los formatos de captura, codificación y almacenamiento de la información en toda la organización.</li>
-            <li><b>Flexibilidad ante el cambio:</b> Facilidad para añadir nuevas entidades o campos de información sin la necesidad de reescribir por completo las capas funcionales del software de aplicación.</li>
-            <li><b>Reducción de costos de mantenimiento:</b> Al centralizar la lógica de persistencia, los esfuerzos informáticos se concentran en optimizar un único entorno en lugar de decenas de archivos dispersos.</li>
-        </ul>
-
-        <h4>1.1.5. Esquemas de la arquitectura de las bases de datos relacionales</h4>
-        <p>Para lograr la independencia de datos y el aislamiento operativo, el estándar de la arquitectura de bases de datos se basa en el modelo de <b>tres niveles de abstracción</b> propuesto por el comité ANSI/SPARC. Este diseño jerárquico separa la visión que tiene el usuario final de los datos de cómo se guardan físicamente en las unidades de disco.</p>
-        <p class="titulin">Niveles de la Arquitectura ANSI/SPARC</p>
-        <ul>
-            <li><b>Nivel Externo (Vistas de Usuario):</b> Es el nivel más cercano al usuario. Describe cómo perciben los datos los distintos perfiles de la organización (por ejemplo, el cajero solo ve saldos, mientras que el auditor ve historiales de transacciones completos).</li>
-            <li><b>Nivel Conceptual:</b> Representa la estructura lógica global de toda la base de datos administrada. Describe qué datos se almacenan y qué relaciones e integridades existen entre ellos, abstrayendo por completo el hardware.</li>
-            <li><b>Nivel Interno (Físico):</b> Es el nivel más bajo de abstracción. Define cómo se organizan físicamente los datos en los discos, detallando los tamaños de registro, los mecanismos de indexación, las rutas de directorios y la compresión de bytes.</li>
-        </ul>
+<div class="pleca-temas">OBJETIVOS DE LAS BASES DE DATOS</div>
         <br>
-         <br>
+        
+        <p><b>Características</b><br>
+        Entre las principales características de los Sistemas de Bases de Datos se pueden mencionar:<br>
+        Independencia lógica y física de los datos.<br>
+        Redundancia mínima.<br>
+        Acceso concurrente por parte de múltiples usuarios.<br>
+        Integridad de los datos.<br>
+        Seguridad de acceso y auditoria.<br>
+        Respaldo y recuperación.
+        </p>
 
+        <p><b>LA INTEGRIDAD DE DATOS:</b><br>
+        Se refiere a la validez y la consistencia de los datos almacenados.
+        </p>
 
+        <p><b>CONSISTENCIA DE DATOS:</b><br>
+        Elimina o controla las redundancias de datos.
+        </p>
 
+        <p><b>ESCALABILIDAD DE DATOS</b><br>
+        Es la propiedad de un sistema.
+        </p>
 
-	  	<div class="pleca-temas">1.2. El análisis y diseño de bases de datos</div>
+        <div class="pleca-temas">INTEGRIDAD Y SEGURIDAD EN LAS BASES DE DATOS.</div>
+        <br>
+        <p>La seguridad de los datos implica protegerlos de operaciones indebidas que pongan en peligro su definición, existencia, consistencia e integridad independientemente de la persona que los accede. Esto se logra mediante mecanismos que permiten estructurar y controlar el acceso y actualización de los mismos sin necesidad de modificar o alterar el diseño del modelo de datos; definido de acuerdo a los requisitos del sistema o aplicación software.</p>
+
+        <p><b>Seguridad en las Bases de Datos</b><br>
+        El objetivo es proteger la Base de Datos contra accesos no autorizados. Se llama también privacidad.
+        </p>
+
+        <p><b>INCLUYE ASPECTOS DE:</b><br>
+        Aspectos legales, sociales y éticos<br>
+        Políticas de la empresa, niveles de información pública y privada<br>
+        Controles de tipo físico, acceso a las instalaciones<br>
+        Identificación de usuarios: voz, retina del ojo, etc.<br>
+        Controles de sistema operativo.
+        </p>
+
+        <p><b>TIPOS DE USUARIOS:</b><br>
+        El DBA, tiene permitidas todas las operaciones, conceder privilegios y establecer usuarios:<br>
+        Usuario con derecho a crear, borrar y modificar objetos y que además puede conceder privilegios a otros usuarios sobre los objetos que ha creado.<br>
+        Usuario con derecho a consultar, o actualizar, y sin derecho a crear o borrar objetos.<br>
+        Los SGBD tienen opciones que permiten manejar la seguridad, tal como GRANT, REVOKE, etc. También tienen un archivo de auditoria en donde se registran las operaciones que realizan los usuarios.
+        </p>
+
+        <p><b>MEDIDAS DE SEGURIDAD</b><br>
+        Físicas: Controlar el acceso al equipo. Tarjetas de acceso, etc.<br>
+        Personal: Acceso sólo del personal autorizado. Evitar sobornos, etc.<br>
+        SO: Seguridad a nivel de SO.<br>
+        Herramientas de seguridad, perfiles de usuario, vistas, restricciones de uso de vistas, etc.
+        </p>
+
+        <center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be8.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>
+        
+		<div class="pleca-temas">DISEÑO DE LAS BASES DE DATOS</div>
+        <br>
+        <p>DISEÑO CONCEPTUAL<br>
+        DISEÑO LÓGICO<br>
+        DISEÑO FÍSICO</p>
+
+        <p>Las bases de datos son representaciones de objetos y situaciones del mundo real.<br>
+        En el mundo real se producen limitaciones y restricciones.<br>
+        Las bases de datos deben reflejar rigurosamente el mundo real.<br>
+        Es necesario el uso de métodos de diseño rigurosos y formalizados.</p>
+
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be9.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be10.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be11.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
 		<br>
-		<p></p><center><img src="Polilibro_%20Requerimientos%20de%20software_files/1_2_banner.jpg" width="720" height="220" alt=""></center><p></p>
-		
-		<p>El Análisis y Diseño de Bases de Datos es la fase más crítica de cualquier proyecto de software o sistemas de información. Si esta etapa se hace mal, el sistema final será lento, tendrá errores de datos y modificarlo en el futuro será una pesadilla.
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be12.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
 
-Este proceso transforma los requerimientos de un negocio (lo que el usuario necesita) en una estructura técnica y optimizada dentro de un disco duro.</p>
-		
-		
-	  
-		<h4>1.2.1. Ingeniería de Software</h4>
-		<p>Llegamos al terreno que une todo lo anterior. La Ingeniería de Software es la disciplina que aplica métodos, herramientas y técnicas estructuradas para construir software de calidad, a tiempo y dentro del presupuesto.
-
-Cuando conectamos la Ingeniería de Software con las Bases de Datos, pasamos de simplemente "crear tablas" a integrar esas bases de datos dentro de un ciclo de vida completo de un sistema..</p>
-		
-	<center><img src="Polilibro_%20Requerimientos%20de%20software_files/u1_6.jpg" class="img-fluid" width="850" height="550">	<p class="tx-figura">Figura 5. Ciclo de vida del software</p></center>
-		
+		<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be13.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
 
 
-
-<h4>1.2.2. Ciclo de vida de sistemas</h4>
-        <p>Cualquier sistema de información empresarial pasa por un proceso de evolución ordenado conocido como el Ciclo de Vida del Desarrollo de Sistemas (SDLC). Esta metodología asegura que el software cumpla de forma rigurosa con los objetivos del negocio antes de pasar a su fase de operación.</p>
-        <p><b>Etapas generales del ciclo de vida:</b></p>
-        <ol>
-            <li><b>Investigación Preliminar y Viabilidad:</b> Determinación de los alcances lógicos, costos financieros y factibilidad tecnológica del proyecto.</li>
-            <li><b>Análisis de Sistemas:</b> Estudio detallado de los procesos de negocio actuales para documentar qué es lo que el nuevo sistema debe resolver de forma estricta.</li>
-            <li><b>Diseño de Sistemas:</b> Modelado técnico detallado que incluye la arquitectura del software, las interfaces de usuario y los diagramas lógicos de datos.</li>
-            <li><b>Desarrollo e Implementación:</b> Codificación física de los módulos de la aplicación, construcción de las tablas en el DBMS y pruebas exhaustivas de integración.</li>
-            <li><b>Mantenimiento y Evolución:</b> Corrección de fallos operativos en producción e incorporación de nuevas funcionalidades solicitadas por los usuarios.</li>
-        </ol>
+		<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be14.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
 
 
 
 
+		<div class="pleca-temas">EJEMPLO DE DISEÑO DE UNA BD</div>
+        <br>
+        <p><b>Análisis de requerimientos y diseño conceptual</b><br>
+        Se desea llevar el control de los cursos de capacitación y de la capacitación de cada empleado en el departamento de capacitación de una empresa.<br>
+        En base a entrevistas se plantea que es necesario poder realizar la planeación de cursos y llevar el control de los cursos que ha tomado cada empleado. Se identifican atributos de interés.<br>
+        Es necesario crear una relacion que indique que cursos ha tomado cada empleado y que empleados han tomado que curso. Es necesario adicionalmente el poder identificar que tipo de relación hay:<br>
+        Un empleado sólo puede tomar un curso.<br>
+        Un curso puede ser tomado por sólo un empleado.<br>
+        Un curso puede ser tomado por varios empleados.<br>
+        Un empleado puede tomar varios cursos.<br>
+        Se determina que un empleado puede tomar varios cursos y un curso puede ser tomado por varios empleados.<br>
+        Se usa el modelo entidad-relación.</p>
 
 
-		<h4>1.2.3. Ciclo de vida relacionado al modelado de BDs</h4>
-		<p>Es una ruta estructurada que se sigue dentro de la Ingeniería de Software para transformar una idea o necesidad de negocio en una estructura de datos real, funcional y optimizada.
+		<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be15.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
 
-Este ciclo de vida no es un evento único; es un proceso iterativo que acompaña a todo el sistema desde su nacimiento hasta su retiro. A continuación se detallan cada una de sus etapas:.</p> 
-		
-		<p><b>Planificación y Definición del Sistema</b><br>
-		
-		Antes de modelar, se debe entender el alcance del proyecto. En esta etapa se responde a la pregunta: ¿Qué parte del mundo real vamos a digitalizar?
-	
-		<li>
-	Identificación de Fronteras: Se delimita qué procesos de la organización afectarán a la base de datos (por ejemplo, el área de facturación e inventarios, pero dejando fuera recursos humanos).
-</li><li>
-Análisis de Factibilidad: Se evalúan los costos, el tiempo y la tecnología necesaria para soportar el volumen de datos esperado.
-	</li>
-	</p>
-
-
-	<p><b>Análisis de Requerimientos (Recolección de Datos)</b><br>
-		
-		Aquí se recopila toda la información sobre cómo opera el negocio. El modelador actúa como un "traductor" entre los usuarios de la empresa y el lenguaje técnico.
-		<li>
-	Fuentes de información: Se analizan formatos físicos (facturas en papel, hojas de Excel), se realizan entrevistas con los empleados y se estudian las reglas del negocio.
-</li><li>
-
-Entregable: Un documento de especificación de requerimientos que detalla los datos que se deben almacenar y las restricciones que se deben aplicar (por ejemplo, "Un cliente no puede tener más de un crédito activo a la vez").
-</li>
-	</p>
-
-
-		<p><b>Modelado Conceptual (Abstracción)</b><br>
-		
-		Es la primera representación gráfica de los datos. El objetivo es plasmar el conocimiento del negocio sin pensar todavía en la tecnología o el software que se usará.
-		
-		<li>
-	Enfoque: Es un modelo de alto nivel, puramente semántico. Debe ser entendible tanto por los programadores como por los directivos de la empresa.
-</li><li>
-
-Herramienta estándar: El Diagrama Entidad-Relación (DER) básico, donde se identifican las Entidades principales (rectángulos) y cómo se conectan entre sí a través de Relaciones (rombos).
-
-</li>
-	</p>
-<p>
-    <b>Modelado Lógico (Estructuración)</b><br>
-    En esta fase, el modelo abstracto se adapta al paradigma de base de datos elegido (generalmente el Modelo Relacional).
-    
-    <li>Transformación: Las entidades del mapa conceptual se convierten en estructuras de tablas. Se definen formalmente los tipos de columnas, las Llaves Primarias (PK) y las Llaves Foráneas (FK).</li>
-    <li>Normalización: Es un paso obligatorio en esta etapa. Se aplican las reglas matemáticas de normalización (Primera, Segunda y Tercera Forma Normal) para asegurar que no haya duplicación de datos y evitar problemas al insertar o borrar información.</li>
-    <li>Independencia del software: El modelo lógico especifica tablas y relaciones, pero sigue siendo independiente de si usarás MySQL, Oracle o PostgreSQL.</li>
-</p>
-
-<p>
-    <b>Modelado Físico (Implementación)</b><br>
-    Aquí el modelo lógico se traduce al código que el motor de base de datos (DBMS) específico puede entender y ejecutar.
-    
-    <li>Definición de Tipos de Datos: Se asignan los tipos de datos exactos según el software elegido (por ejemplo, INT, VARCHAR(255), DATETIME).</li>
-    <li>Optimización de Rendimiento: Se crean índices para acelerar las búsquedas frecuentes, se configuran particiones de disco y se establecen las reglas de seguridad físicas.</li>
-    <li>Entregable: El script de código DDL (Data Definition Language) lleno de sentencias CREATE TABLE listo para ser ejecutado en el servidor.</li>
-</p>
-
-<p>
-    <b>Pruebas y Validación</b><br>
-    Una vez creada la estructura en el servidor de desarrollo, se debe verificar que soporte las operaciones reales de la aplicación.
-    
-    <li>Poblamiento Inicial: Se introducen datos de prueba (datos ficticios pero realistas).</li>
-    <li>Pruebas de Estrés y Carga: Se simulan miles de consultas simultáneas para comprobar el tiempo de respuesta del servidor y detectar cuellos de botella.</li>
-    <li>Validación de Reglas: Se comprueba que las restricciones (constraints) funcionen (por ejemplo, intentar meter un usuario sin correo para verificar que el sistema lo rechace correctamente).</li>
-</p>
-
-<p>
-    <b>Operación y Mantenimiento (Evolución)</b><br>
-    La base de datos entra en producción y empieza a recibir datos reales de los usuarios. Esta fase dura toda la vida útil del sistema.
-    
-    <li>Monitoreo: El Administrador de la Base de Datos (DBA) vigila el rendimiento, el crecimiento del espacio en disco y realiza respaldos (backups) periódicos.</li>
-    <li>Gestión de Cambios (Migraciones): Las empresas evolucionan, lo que significa que el modelo de datos también debe hacerlo. Si el negocio pide una nueva funcionalidad, el modelo debe regresar a la fase de análisis y diseño para agregar nuevas tablas o columnas sin romper lo que ya está funcionando.</li>
-</p>
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be16.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
 
 
 
+		<p>El objetivo fundamental del diseño de bases de datos es obtener un conjunto de datos y un conjunto de operaciones sobre ellos, que permitan satisfacer las necesidades de la organización.<br>
+        <b>Diseño conceptual:</b><br>
+        Esquema conceptual.<br>
+        <b>Diseño lógico:</b><br>
+        Esquema lógico.<br>
+        <b>Diseño físico:</b><br>
+        Esquema físico.</p>
+
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be18.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
+
+		<br>
+<br>		<br>
+<br>		<br>
+<br>
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be19.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
+
+
+<div class="pleca-temas">El Diseño</div>
+        <br>
+        <p>El ser humano es eminentemente simbólico; desde que nace se expresa de diversas maneras<br>
+        Formas de expresión, diversos idiomas y ha inventado otras diversas maneras de expresarse: la música, la pintura, la escultura, en definitiva: lenguajes de símbolos.<br>
+        En su evolución ha llegado a crear la escritura, lenguajes matemáticos y lenguajes que permiten esquematizar.<br>
+        En diversos campos de la ingeniería se representan esquemas: planos (arquitectura), esquemas eléctricos (electricidad), esquemas de máquinas (ingeniería mecánica), entre otros.<br>
+        Un modelo/esquema¹ puede definirse como "la abstracción mental de la realidad observada en la que se resaltan los aspectos que se pretenden transmitir".</p>
+
+        <p><b>Modelos y esquemas</b><br>
+        El ser humano crea modelos o simplificaciones de la realidad para poder comprenderla y expresarla.<br>
+        Los modelos implican tareas de simplificación o abstracción de la realidad, de modo que representamos sólo los aspectos que interesa resaltar de esa realidad que se pretende alcanzar.<br>
+        <b>Modelos Conceptuales o semánticos:</b> están enfocados a describir el mundo real con independencia de la tecnología.<br>
+        Ejemplos: Modelo Entidad/Relacion de Chen (ME/R), Orientados a Objetos (Diagramas de clases de UML).</p>
+
+        <p><b>Conceptual:</b> obtener una representación de la realidad que capture las propiedades estáticas y dinámicas de la misma necesarias para satisfacer sus requerimientos. Esta representación debe suponer una imagen fiel del comportamiento del mundo real.<br>
+        <b>Lógico:</b> traducción del esquema conceptual obtenido en la fase anterior dando lugar a un esquema lógico y a un conjunto de esquemas de transacciones, que expresan la estática y la dinámica.<br>
+        <b>Físico:</b> detalles de representación física y aspectos de eficiencia.<br>
+        instrumento que se aplica a una parcela del mundo real (universo del discurso) para obtener una estructura de datos a la que denominamos esquema. Esta distinción entre el modelo (instrumento) y el esquema (resultado de aplicar el instrumento) es importante... Es importante también distinguir entre mundo real y universo del discurso, ya que este último es la visión que del mundo real tiene el diseñador... podemos definir un modelo de datos como un conjunto de conceptos, reglas y convenciones que nos permiten describir los datos, aspectos estáticos y dinámicos del universo del discurso.<br>
+        <b>Estáticas:</b> objetos de información (entidades), propiedades de los objetos (atributos), relaciones entre objetos y restricciones sobre los objetos o sus relaciones ----->Esquema.<br>
+        <b>Dinámicas:</b> operaciones sobre los objetos o sus relaciones, conjuntos de operaciones (transacciones) y restricciones sobre la evolución de los objetos y sus relaciones ----🡪 Especificación de transacciones.</p>
+
+        <p><b>Fase 1: Recopilación y análisis de requerimientos.</b><br>
+        En esta fase se trata de conocer las expectativas del usuario sobre la base de datos.<br>
+        Para ello, se identifican los grupos de usuarios reales y posibles y las áreas de aplicación, se revisa la documentación existente, se analiza el entorno operativo y los requerimientos de procesado, y se realizan entrevistas y cuestionarios con los usuarios.<br>
+        Para todo ello existen técnicas formalizadas de especificación de requerimientos.</p>
+
+        <p><b>Fase 2: Diseño conceptual de la base de datos.</b><br>
+        Esta fase se subdivide en otras dos:<br>
+        La <b>Fase 2a</b> corresponde al diseño del esquema conceptual, esquema de especificación del modelo de datos a alto nivel, independiente de cualquier SGBD, que no puede utilizarse para implementar directamente la estructura de la base de datos.<br>
+        La <b>Fase 2b</b> corresponde al diseño de transacciones, es decir, a aquellas aplicaciones que van a manipular datos contenidos en la base de datos. Se suelen identificar mediante el estudio de las entradas y salidas de datos y su comportamiento funcional.</p>
+
+        <p><b>Fase 3: Elección de un SGBD.</b><br>
+        Se consideran diferentes factores técnicos, económicos y de beneficio, de servicio técnico y formación de usuarios, organizativos de rendimiento, etc.</p>
+
+        <p><b>Fase 4: Transformación del modelo de datos (o fase de diseño lógico).</b><br>
+        En esta fase se crea un esquema conceptual y los esquemas externos necesarios en el modelo de datos del SGBD seleccionado, mediante la transformación de los esquemas de modelo de datos a alto nivel obtenidos en la Fase 2a, al modelo de datos por el SGBD.</p>
+
+        <p><b>Fase 5: Diseño de la base de datos física.</b><br>
+        Consiste en definir las estructuras de almacenamiento y de acceso para alcanzar una rendimiento óptimo de las aplicaciones de la base de datos.</p>
+
+        <p><b>Fase 6: Implementación del sistema de base de datos.</b><br>
+        En esta fase final se hace realidad la base de datos, mediante la creación y la compilación del esquema de bases de datos y de los ficheros de bases de datos, así como de las transacciones, a través de las aplicaciones.</p>
+
+<p><h3>DISEÑO LÓGICO (Dependiente del DBMS) Transformar el modelo conceptual en definiciones de tablas, vistas, etc.
+</h3></p>
+
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be20.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
 
 
 
-<h4>1.2.4. Métodos, herramientas, procedimientos y su relación al ciclo de vida de un sistema</h4>
-        <p>Para ejecutar con éxito cada fase del ciclo de vida de un sistema de información, los ingenieros de software se apoyan en un ecosistema integrado de elementos metodológicos:</p>
-        <ul>
-            <li><b>Métodos:</b> Son los enfoques estructurados o ágiles (como Scrum, Cascada o DevOps) que dictan la secuencia de pasos y las pautas técnicas para avanzar a través del desarrollo del sistema.</li>
-            <li><b>Herramientas (CASE):</b> Aplicaciones automatizadas de ingeniería asistida por computadora (como modeladores UML, entornos IDE de desarrollo y herramientas de control de versiones como Git) que aceleran la documentación y diseño.</li>
-            <li><b>Procedimientos:</b> Reglas organizacionales escritas y controles de calidad aplicados para validar que cada entregable cumpla con los estándares de seguridad e integridad definidos por la empresa.</li>
-        </ul>
+<div class="pleca-temas">Arquitectura de una base de datos</div>
+        <br>
+        <p><b>NIVEL EXTERNO</b><br>
+        <b>NIVEL CONCEPTUAL</b><br>
+        <b>NIVEL INTERNO</b></p>
 
 
-		
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be21.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
+
+<div class="pleca-temas">Arquitectura de tres niveles</div>
+        <br>
+        <p><b>Nivel Interno :</b> Más cercano al almacenamiento físico, o sea se ocupa de cómo se almacenan físicamente los datos.<br>
+        <b>Nivel Conceptual :</b> Es el nivel intermedio entre los otros dos y presenta una vista global o comunitaria de los datos.<br>
+        <b>Nivel Externo :</b> Más cercano a los usuarios, se ocupa de como los usuarios perciben los datos (vistas individuales).</p>
+
+        <p>El <b>Esquema Interno</b> describe la estructura física de almacenamiento de la base de datos.<br>
+        El <b>Esquema Conceptual</b> describe la estructura de toda la base de datos para una comunidad de usuarios. Describe entidades, atributos, vínculos, restricciones, operaciones, etc.<br>
+        <b>Esquema externo o vista de usuario</b> describe la parte de la base de datos que interesa a un grupo de usuarios y oculta a ese grupo el resto.</p>
+
+        <p>En un SGBD los usuarios hacen referencia sólo a su esquema externo de base de datos, por lo que el SGBD debe transformar una solicitud expresada en "esquema externo" a "esquema conceptual" y posteriormente a "esquema interno" que actuará sobre los datos almacenados.<br>
+        El proceso de transformar solicitudes de un esquema a otro se conoce como correspondencia o mapping.<br>
+        <i>(Basado en Sist. de Base de Datos, Elmasri/Navathe)</i></p>
 
 
 
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be22.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
 
 
+
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be23.png" class="img-fluid" width="1000" height="800" alt="Independencia de datos">
+        </center>	
+
+
+<div class="pleca-temas">MODELO CONCEPTUAL</div>
+
+
+		<h3>¿QUÉ ES UN MODELO?</h3>
+        <br>
+        <p>Un modelo es una representación abstracta, conceptual, gráfica, física o matemática con el único propósito de analizar, explicar, simular y describir procesos</p>
+
+        <h3>QUÉ ES Y PARA QUÉ SIRVE UN MODELO CONCEPTUAL</h3>
+        <br>
+        <p>Un modelo conceptual es la descripción de cómo se relacionan los conceptos en un problema.<br>
+        Modelo visual de un sistema que ilustra las interconexiones de los componentes del modelo<br>
+        Sirve para representar un problema de manera gráfica a través de, por ejemplo, diagramas entidad relación, diagrama de clases, diagramas de secuencias, diagramas de casos de uso, diagramas de actividades, diagramas de flujo, etc.</p>
+
+        <h3>¿PARA QUÉ MODELAR?</h3>
+        <br>
+        <p>Es importante para abstraer un problema e identificar como interactúa el sistema en el cual se desenvuelve la solución. Al modelar un problema se identifica su funcionamiento, y es realizado para solucionar problemas.</p>
+
+		<h3>Ejemplos</h3>
+
+
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be24.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+
+			<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be25.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+
+
+		<br>
+<br>
+		<center>
+          <img src="Polilibro_%20Requerimientos%20de%20software_files/image_cf8be26.png" class="img-fluid" width="600" height="400" alt="Independencia de datos">
+        </center>	
+
+
+<p>Para elaborar cualquier modelo conceptual es importante respetar las reglas y los símbolos gráficos que los representan e identifican de forma única.<br>
+        <b>¿Qué modelo conceptual conoces?</b><br>
+        Elabora el modelo conceptual que conoces</p>
 
 		<!---
 		<h3>1.2.3. Requerimientos de dominio</h3>

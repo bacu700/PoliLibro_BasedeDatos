@@ -113,114 +113,1267 @@
 			<br><br>
 
 
-<div class="pleca-temas">3.1 Lenguaje Estructurado de Consulta (SQL)</div>
-        <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/3_1_banner.jpg" width="720" height="220" alt="Lenguaje SQL"></center>
+<div class="pleca-temas">SQL</div>
         <br>
-        <p>El Lenguaje Estructurado de Consulta (SQL, por sus siglas en inglés Structured Query Language) es el estándar universal para la definición, manipulación y control de bases de datos relacionales. A diferencia de los lenguajes de programación imperativos, SQL es un lenguaje declarativo, lo que significa que el usuario especifica qué datos desea obtener en lugar de instruir paso a paso cómo recolectarlos.</p>
-        <p>En el entorno profesional de las Tecnologías de la Información, SQL actúa como la interfaz definitiva entre las aplicaciones de software y los motores de bases de datos. Su dominio permite a los ingenieros y administradores gestionar eficientemente volúmenes masivos de información, garantizando la integridad y la velocidad de acceso a los datos del negocio.</p>
-        <p>El estudio formal de SQL e implementación física se divide en cuatro grandes bloques operativos dentro de esta unidad:</p>
-        <ul>
-            <li>Antecedentes históricos, características estructurales y ventajas de su adopción.</li>
-            <li>Diseño físico mediante el Lenguaje de Definición de Datos (LDD).</li>
-            <li>Mecanismos de seguridad, vistas y el Lenguaje de Control de Datos (LCD).</li>
-            <li>Extracción y manejo de información con el Lenguaje de Manipulación de Datos (LMD).</li>
-        </ul>
-        <p></p>
-        
-        <h4>3.1.1. Antecedentes, características y ventajas del SQL</h4>
-        <p>Los orígenes de SQL se remontan a la década de 1970 en los laboratorios de IBM, donde Donald Chamberlin y Raymond Boyce desarrollaron una primera versión llamada SEQUEL (Structured English Query Language), diseñada para implementar el modelo relacional formulado por Edgar F. Codd. Posteriormente, el lenguaje evolucionó y se comercializó masivamente por compañías precursoras en sistemas gestores de bases de datos.</p>
-        <p>Entre las características fundamentales de SQL destaca su base matemática robusta apoyada en el álgebra relacional, su sintaxis cercana al idioma inglés y su capacidad para operar sobre conjuntos de registros de manera simultánea en lugar de procesar fila por fila de forma manual.</p>
-        <p>La adopción de SQL proporciona ventajas competitivas críticas para cualquier arquitectura de datos moderna:</p>
-        <ul>
-            <li><b>Portabilidad:</b> El código SQL escrito para un motor específico puede adaptarse con mínimos cambios a otros sistemas gestores del mercado.</li>
-            <li><b>Aislamiento de datos:</b> Separa de forma estricta la estructura lógica de los datos de cómo se almacenan físicamente en los discos de almacenamiento.</li>
-            <li><b>Optimización automática:</b> El motor de la base de datos cuenta con un optimizador que decide el camino más rápido para ejecutar las consultas complejas de manera transparente para el usuario.</li>
-        </ul>
-       
-		
-		<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_15.jpg" alt="Tabla 1. Evolución e impacto del lenguaje SQL" width="850" height="935" class="img-fluid"><p class="tx-figura">Tabla 1. Evolución del lenguaje SQL</p></center>
-        <p>En conclusión, comprender los fundamentos lógicos y las ventajas del lenguaje SQL es un requisito indispensable para los ingenieros que diseñan la persistencia de datos en aplicaciones modernas.</p>
+        <p><b>DDL, DML Y DCL</b></p>
 
-        <h4>3.1.2. Estándares de SQL</h4>
-        <p>Para evitar la fragmentación del mercado y asegurar la compatibilidad entre el software de diferentes proveedores, el Instituto Nacional Estadounidense de Estándares (ANSI) y la Organización Internacional de Normalización (ISO) formalizaron a SQL como un estándar oficial. El primer estándar oficial se publicó como SQL-86, estableciendo las bases comunes del lenguaje.</p>
-        <p>A lo largo de los años, el estándar ha evolucionado de manera continua para incorporar nuevas capacidades técnicas a través de revisiones clave como SQL-92 (que estandarizó las operaciones JOIN), SQL:1999 (que introdujo expresiones regulares y disparadores), hasta las especificaciones modernas que dan soporte nativo a estructuras de datos XML, objetos JSON y funciones analíticas avanzadas.</p>
-        <p>Para ejemplificar cómo se estructuran los componentes del estándar dentro de un proyecto técnico, consideremos las distintas subdivisiones funcionales que componen la especificación oficial y que todo motor de base de datos comercial o de código abierto debe implementar.</p>
-        <p>En este escenario normativo se identifican las siguientes áreas de cumplimiento: el núcleo básico (Core), que define las características mínimas obligatorias que debe tener un motor para llamarse compatible con SQL, y los módulos de extensiones opcionales, que abarcan tipos de datos avanzados, soporte multimedia y conectividad remota.</p>
-        <p>El cumplimiento de estas normas garantiza un proceso de desarrollo estructurado e independiente del proveedor de software elegido, protegiendo la inversión tecnológica de las organizaciones frente a migraciones de servidores.</p>
-        <br>
-        <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_16.jpg" alt="Tabla 2. Cronología de los Estándares ANSI/ISO SQL" width="838" height="593" class="img-fluid"><p class="tx-figura">Tabla 2. Resumen cronológico de los Estándares ANSI/ISO SQL</p></center>
-
-        <div class="pleca-temas">3.2 Diseño físico de Bases de Datos</div>
-        <br>
-        <p>El diseño físico representa la etapa de implementación técnica real donde los diagramas lógicos se transforman en estructuras físicas residentes en el servidor. En esta fase, el ingeniero interactúa directamente con el motor de base de datos (DBMS) para crear los contenedores de datos que soportarán la operación de las aplicaciones de software.</p>
-        <p>Durante el diseño físico, el uso preciso de la sintaxis y de las restricciones es crítico para evitar fallos de rendimiento y asegurar que el motor bloquee de manera automática la inserción de datos corruptos o incompletos.</p>
-        
-        <h4>3.2.1. Lenguaje de Definición de Datos (LDD) del SQL</h4>
-        <p>El Lenguaje de Definición de Datos (LDD o DDL por sus siglas en inglés Data Definition Language) es el subconjunto de sentencias de SQL diseñado específicamente para la creación, modificación y eliminación de las estructuras que alojan los datos en el servidor, tales como tablas, índices, vistas y esquemas completos. Las sentencias más importantes del LDD son CREATE, ALTER y DROP.</p>
-        <p>El ciclo del LDD se inicia con el análisis del diccionario de datos y avanza a través de la ejecución de scripts estructurados en el servidor de desarrollo, asegurando que las restricciones lógicas queden perfectamente plasmadas en el almacenamiento físico del sistema.</p>
-        <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_17.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="888" height="628" class="img-fluid"><p class="tx-figura">Figura 15. Sentencias del Lenguaje de Definición de Datos (LDD)</p></center>
-        
-        <h4>3.2.2. Creación de tablas y aplicación de cláusulas NULL, NOT NULL, DEFAULT, PRIMARY KEY, FOREIGN KEY y CONSTRAINT</h4>
-        <p>La creación de tablas es la acción fundamental del diseño físico y se realiza mediante la sentencia <code>CREATE TABLE</code>. Durante este proceso, cada columna debe ser perfectamente tipificada y configurada con cláusulas específicas que controlan de forma estricta las reglas de integridad de la base de datos.</p>
-        <p class="titulin">Cláusulas de Configuración e Integridad</p>
         <ul>
-            <li><b>NULL / NOT NULL:</b> Determina si una columna acepta la ausencia de datos (NULL) o si es estrictamente obligatorio capturar un valor al registrar una fila (NOT NULL).</li>
-            <li><b>DEFAULT:</b> Asigna un valor predeterminado automático a la columna en caso de que el usuario no envíe un dato explícito durante la inserción.</li>
-            <li><b>PRIMARY KEY:</b> Establece formalmente el identificador único de la tabla, impidiendo valores duplicados y nulos de forma automática en esa columna.</li>
-            <li><b>FOREIGN KEY:</b> Configura el enlace referencial hacia la llave primaria de otra tabla, garantizando que no existan registros huérfanos.</li>
-            <li><b>CONSTRAINT:</b> Permite asignar nombres explícitos y personalizados a las restricciones de la tabla, facilitando su posterior mantenimiento y la identificación de errores en la aplicación.</li>
+          <li><b>SQL ANSI 92:</b> Estándar y lenguaje universal.</li>
+          <li><b>PL/SQL (Procedure Language / SQL):</b> Extensión que combina SQL con elementos de lenguajes de programación.
+            <ul>
+              <li>Postgres: PL/PgSQL</li>
+              <li>SQL Server: Transact-SQL</li>
+            </ul>
+          </li>
+          <li><b>Conceptos fundamentales:</b>
+            <ul>
+              <li>Base de Datos</li>
+              <li>Bases de Datos Relacionales</li>
+              <li>Manejador de Base de Datos (SGBD)
+                <ul>
+                  <li>Oracle, SQL Server</li>
+                  <li>PostgreSQL, MySQL</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><b>Modelos de datos:</b>
+            <ul>
+              <li>Entidad Relación (ER)</li>
+              <li>ER Extendido</li>
+              <li>Relacional</li>
+              <li>Tablas (Entidades o relaciones y sus propiedades)</li>
+            </ul>
+          </li>
         </ul>
 
-        <h4>3.2.3. Modificación de características de objetos y eliminación de Objetos</h4>
-        <p>Los entornos de software evolucionan constantemente, lo que exige que la estructura física de la base de datos se adapte a los nuevos requerimientos del negocio sin necesidad de destruir las tablas existentes ni perder los datos ya almacenados en producción.</p>
-        <p>Para modificar objetos de la base de datos, el LDD provee la sentencia <code>ALTER</code> (por ejemplo, <code>ALTER TABLE</code>), la cual permite agregar nuevas columnas, eliminar campos obsoletos, cambiar tipos de datos o modificar restricciones activas. Por otro lado, cuando un objeto ya no es necesario dentro del esquema, se utiliza la sentencia <code>DROP</code> (por ejemplo, <code>DROP TABLE</code>) para eliminar permanentemente su estructura y todo su contenido del disco del servidor.</p>
-
-        <div class="pleca-temas">3.3 Seguridad de datos y privilegios de usuarios</div>
-        <strong><center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/3_3_banner.jpg" width="720" height="220" alt="Seguridad de Datos"></center><br></strong>
-        <br>
-        <p>De acuerdo con los estándares internacionales de seguridad en Tecnologías de la Información, la protección del activo más valioso de una organización —sus datos— debe gestionarse de forma estricta dentro del propio motor de base de datos, asegurando que solo el personal y los procesos autorizados tengan acceso a la información confidencial.</p>
-        <p>Las reglas de seguridad aplicadas al modelo físico definen los mecanismos que controlan el acceso a las tablas, restringiendo operaciones críticas de acuerdo con los roles asignados a los usuarios de la empresa.</p>
-        
-        <h4>3.3.1. Uso de vistas</h4>
-        <p>Una <b>Vista</b> es una tabla virtual basada en el resultado de una consulta SQL predefinida. No almacena datos físicos de forma independiente; en su lugar, actúa como un filtro de seguridad dinámico sobre las tablas reales (tablas base).</p>
-        <p>Las vistas permiten simplificar consultas complejas ocultando las uniones de tablas al usuario final, y actúan como un excelente mecanismo de seguridad al permitir que un usuario consulte ciertas columnas específicas de una tabla sin otorgarle acceso directo ni visibilidad sobre el resto de los campos confidenciales.</p>
-
-        <h4>3.3.2. Lenguaje de Control de Datos (LCD) del SQL</h4>
-        <p>El Lenguaje de Control de Datos (LCD o DCL por sus siglas en inglés Data Control Language) es el subconjunto de sentencias de SQL encargado de administrar la seguridad, el acceso y los permisos de los usuarios sobre los objetos de la base de datos. Sus componentes centrales son las sentencias <code>GRANT</code> y <code>REVOKE</code>.</p>
-        <p>A través de estas sentencias, el Administrador de la Base de Datos (DBA) puede implementar un control de acceso basado en roles, asegurando un entorno audituable y protegido contra accesos no autorizados.</p>
-
-        <h4>3.3.3. Privilegios aplicables a las tablas</h4>
-        <p>Los privilegios definen las acciones específicas que un usuario tiene permitido ejecutar sobre un objeto de la base de datos. Al aplicar privilegios sobre las tablas, el administrador puede conceder permisos detallados utilizando la sentencia <code>GRANT</code> o retirarlos con <code>REVOKE</code> de forma selectiva.</p>
-        <p>Los privilegios estándar aplicables a las tablas incluyen <code>SELECT</code> (permiso para leer datos), <code>INSERT</code> (permiso para añadir filas), <code>UPDATE</code> (permiso para modificar registros existentes) y <code>DELETE</code> (permiso para eliminar renglones). Esto asegura que, por ejemplo, un sistema de facturación pueda registrar ventas pero tenga estrictamente prohibido borrar el historial financiero.</p>
-
-        <div class="pleca-temas">3.4 Manejo de información de las Bases de Datos</div>
-        <br>
-        <p>Una vez que las estructuras físicas han sido creadas y aseguradas en el servidor, el sistema entra en su fase operativa principal: la interacción con los datos reales generados por los usuarios del sistema de información.</p>
-        
-        <h4>3.4.1. Lenguaje de Manipulación de Datos (LMD)</h4>
-        <p>El Lenguaje de Manipulación de Datos (LMD o DML por sus siglas en inglés Data Manipulation Language) es el subconjunto de comandos SQL que permite a los usuarios y aplicaciones gestionar la información contenida dentro de las tablas previamente creadas. A diferencia del LDD, el LMD no altera la estructura del esquema, sino únicamente los registros internos.</p>
-
-        <h4>3.4.2. Inserción, actualización y eliminación de renglones</h4>
-        <p>Las operaciones básicas de manipulación de datos se ejecutan mediante tres sentencias fundamentales que conforman el ciclo operativo de los registros:</p>
+        <p><b>Clasificación de comandos SQL:</b></p>
         <ul>
-            <li><b>INSERT:</b> Añade nuevos renglones o registros a una tabla respetando los tipos de datos y restricciones de integridad de las columnas.</li>
-            <li><b>UPDATE:</b> Modifica los valores de uno o varios atributos en los renglones existentes. Exige el uso cuidadoso de la cláusula <code>WHERE</code> para evitar alterar accidentalmente toda la tabla.</li>
-            <li><b>DELETE:</b> Remueve físicamente uno o más renglones de una tabla basándose en una condición específica dictada por la cláusula <code>WHERE</code>.</li>
+          <li><b>DDL (Data Definition Language) - Definición:</b>
+            <ul>
+              <li>CREATE TABLE</li>
+              <li>CREATE VIEW</li>
+              <li>ALTER TABLE</li>
+            </ul>
+          </li>
+          <li><b>DML (Data Manipulation Language) - Manipulación:</b>
+            <ul>
+              <li>SELECT</li>
+              <li>UPDATE</li>
+              <li>INSERT</li>
+              <li>DELETE</li>
+            </ul>
+          </li>
+          <li><b>DCL (Data Control Language) - Seguridad:</b>
+            <ul>
+              <li>GRANT</li>
+              <li>REVOKE</li>
+            </ul>
+          </li>
         </ul>
 
-        <h4>3.4.3. Consultas simples y multitabla utilizadas para consultas</h4>
-        <p>La recuperación de información se realiza mediante la sentencia <code>SELECT</code>, el comando más potente y utilizado de SQL. Las <i>consultas simples</i> extraen datos de una sola tabla aplicando filtros lógicos, ordenamientos y agrupamientos básicos.</p>
-        <p>Por otro lado, las <i>consultas multitabla</i> permiten unificar y cruzar datos distribuidos en diferentes estructuras físicas mediante la cláusula <code>JOIN</code> (como <code>INNER JOIN</code> o <code>LEFT JOIN</code>), vinculando llaves primarias con foráneas para construir reportes y respuestas de negocio integradas.</p>
 
-        <h4>3.4.4. Funciones de columnas y funciones escalares</h4>
-        <p>SQL enriquece la recuperación de datos mediante el uso de funciones integradas en el motor que realizan cálculos avanzados directamente en el servidor:</p>
-        <ul>
-            <li><b>Funciones de Columnas (o de Agregación):</b> Operan sobre un conjunto de valores de una columna completa para devolver un único resultado resumido. Ejemplos típicos son <code>SUM()</code> (total), <code>AVG()</code> (promedio), <code>COUNT()</code> (conteo de registros), <code>MIN()</code> y <code>MAX()</code>.</li>
-            <li><b>Funciones Escalares:</b> Operan de forma individual sobre cada valor de una celda y devuelven un valor transformado por cada fila procesada, como funciones de manipulación de texto (<code>UPPER()</code>, <code>SUBSTRING()</code>), cálculos matemáticos absolutos o manipulación y formato de fechas.</li>
-        </ul>
+
+
+
+
+      <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_17.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="888" height="628" class="img-fluid"><p class="tx-figura">Categorias</p></center>
+
+
+
+
+      <div class="pleca-temas">Palabras Claves</div>
         <br>
+        <ul>
+          <li><b>Comandos principales:</b> CREATE, ALTER, DELETE, INSERT, UPDATE, GRANT</li>
+          <li><b>Tipos de datos:</b> NUMERIC, VARCHAR, DATE, BIT, TEXT</li>
+          <li><b>Operadores lógicos:</b> AND, OR, NOT</li>
+          <li><b>Funciones de agregación:</b> MAX, MIN, SUM, AVG</li>
+          <li><b>Cláusulas de ordenamiento y filtrado:</b> GROUP, HAVING, ORDER, BETWEEN...AND</li>
+        </ul>
+
+        <div class="pleca-temas">DDL (Data Definition Language)</div>
+        <br>
+        <p>Es un conjunto de instrucciones que sirven para definir, modificar o eliminar objetos como los siguientes:</p>
+        
 
 
+      <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_18.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="600" height="400" class="img-fluid"><p class="tx-figura"></p></center>
+
+      <div class="pleca-temas">INSTRUCCIÓN PARA CREAR UNA TABLA</div>
+        <br>
+        <p>CREATE TABLE nombre_tabla<br>
+        (<br>
+        nombre_campo1 tipo de dato PRIMARY KEY,<br>
+        nombre_campo2 tipo de dato tamaño,<br>
+        nombre_campo3 tipo de dato tamaño<br>
+        );</p>
+
+        <p>Ejemplo:<br>
+        CREATE TABLE departamento<br>
+        (<br>
+        Clave_Dep int NOT NULL PRIMARY KEY,<br>
+        Nom_Departamento varchar(30)<br>
+        );</p>
+
+        <p>Quedando la tabla de la siguiente manera:</p>
+        
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">01</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">VENTA</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">02</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">COMPRA</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">03</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">CAPITAL HUMANO</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">Instrucción para crear una tabla con una llave foránea (FK)</div>
+        <br>
+        <p>CREATE DATABASE EJEMPLO;<br>
+        USE EJEMPLO;</p>
+
+        <p>TABLAS ELABORADAS POR RUTH BLAS VAZQUEZ</p>
+        
+        <p>CREATE TABLE RBV_Empleado<br>
+        (<br>
+        ID_EMP int NOT NULL PRIMARY KEY,<br>
+        NOM_EMP varchar(20),<br>
+        DIR_EMP varchar (30),<br>
+        Clave_Dep1 int FOREIGN KEY REFERENCES departamento (Clave_Dep)<br>
+        );</p>
+
+        <p><b>EMPLEADO</b></p>
+        <table class="table table-bordered text-center" style="width: 70%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">ID_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">NOM_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">DIR_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dept1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">AV THE</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">03</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">MODIFICAR UNA TABLA</div>
+        <br>
+        <p>Para agregar un campo a una tabla, se utiliza la siguiente instrucción:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alter table NOMBRE_TABLA<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add NOMBRE_NUEVO_CAMPO DEFINICION;</p>
+
+        <p>Ejemplo para agregar un campo a la tabla de departamento:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alter table departamento<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add Gerente varchar (20);</p>
+
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Gerente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Para eliminar un campo a una tabla, se utiliza la siguiente instrucción:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alter table NOMBRE_TABLA<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drop column NOMBRE_CAMPO;</p>
+
+        <p>Ejemplo:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alter table departamento<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drop column Nom_Departamento;</p>
+
+        <table class="table table-bordered text-center" style="width: 40%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Gerente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">ELIMINAR UNA TABLA</div>
+        <br>
+        <p>Para eliminar una tabla, se utiliza la siguiente instrucción:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DROP table NOMBRE_TABLA;</p>
+        <p>Ejemplo:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DROP table departamento;</p>
+
+        <div class="pleca-temas">VISTA (VIEW)</div>
+        <br>
+        <p>Una vista es una consulta que se presenta como una tabla (virtual no existe físicamente) a partir de un conjunto de tablas en una base de datos relacional. Las vistas tienen la misma estructura que una tabla: filas y columnas, pero no existe como conjunto de valores de datos almacenados en una base de datos. La instrucción se basa en una consulta (select).<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATE VIEW nom_vista AS(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SELECT campos a consultar<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM nombres de las tablas<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE condición);</p>
+
+        <div class="pleca-temas">ÌNDÍCE (INDEX)</div>
+        <br>
+        <p>Los índices son usados para acelerar el proceso de consultas, resultando un alto desempeño, son similares a índices de libros de texto. En los libros de texto, si usted necesita ir a un capítulo en particular, usted va al índice, encuentra el número de página del capítulo y va directamente a esa página. Sin índices, el proceso de encontrar su capítulo deseado habría sido muy lento.<br>
+        Un índice permite el acceso de forma DIRECTA y RÁPIDA a los registros de una tabla<br>
+        Para crear índices empleamos la instrucción "create index".<br>
+        La sintaxis básica es la siguiente:<br>
+        create TIPODEINDICE index NOMBREINDICE on TABLA(CAMPO);<br>
+        TIPODEINDICE indica si es agrupado (clustered) o no agrupado (nonclustered). Si no especificamos crea uno no agrupado.<br>
+        Independientemente de si es agrupado o no, también se puede especificar que sea "unique", es decir, no haya valores repetidos. Si se intenta crear un índice unique para un campo que tiene valores duplicados, SQL Server no lo permite.</p>
+
+        <p>Ejemplo:<br>
+        Se desea crear un índice agrupado único para el campo Id_Autor de la tabla Autor:<br>
+        CREATE unique clustered INDEX I_departamento__Clave_Dep ON departamento(Clave_Dep);</p>
+        <p>Para identificar los índices fácilmente, podemos agregar un prefijo al nombre del índice, por ejemplo "I" y luego el nombre de la tabla y/o campo.</p>
+        <p>Ahora se desea crear un índice no agrupado para el campo Nombre_Departamento de la tabla de departamento:<br>
+        CREATE nonclustered index I_departamento_Nombre_Departamento ON departamento(Nombre_Departamento);</p>
+        <p>CREATE CLUSTERED INDEX (Carrera, Turno, Semestre) ON Alumno</p>
+
+        <div class="pleca-temas">DML</div>
+        <br>
+        <p>Este lenguaje consta de un conjunto de instrucciones que nos permiten modificar el estado de los datos que residen en las tablas, respetando las restricciones de integridad.<br>
+        Cualquiera de las siguientes instrucciones se pueden ejecutar para uno o varios registros de la tabla:</p>
+        <ul>
+          <li>INSERT para agregar nuevos registros</li>
+          <li>DELETE para borrar registros</li>
+          <li>UPDATE para modificar valores de los registros</li>
+          <li>SELECT para efectuar cualquier consulta</li>
+        </ul>
+
+        <div class="pleca-temas">INSERT</div>
+        <br>
+        <p>Esta instrucción nos permite AGREGAR nuevos registros a una tabla.<br>
+        Al ingresar los datos de cada registro debe tenerse en cuenta la cantidad y el orden de los campos.<br>
+        La sintaxis básica y general es la siguiente:<br>
+        insert into NOMBRETABLA (NOM_CAMPO1, ..., NOM_CAMPOn) values (VALORCAMPO1, ..., VALORCAMPOn);</p>
+        <p>Se usa insert into, luego el nombre de la tabla, se detalla los nombres de los campos entre paréntesis y separados por comas.<br>
+        Por último en la cláusula values se colocan los valores para cada campo, también entre paréntesis y separados por comas.</p>
+
+        <p>Por ejemplo:<br>
+        insert into departamento (Clave_Dep, Nombre_Departamento, Gerente) values (01, ‘Informática’, ‘Mariano García’);</p>
+        <p>Los datos ingresados que corresponden a cadenas de caracteres (varchar o char) se colocan entre comillas simples.</p>
+        <p>Existe otra forma más sencilla para ingresar datos:<br>
+        insert into departamento values (02, ‘Ventas’, ‘Luis Pérez’);</p>
+        <p>Para verificar que los datos fueron correctamente insertados en una tabla, se usa la instrucción select:<br>
+        select * from departamento;</p>
+
+        <p><b>Departamento</b></p>
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Gerente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">01</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Informatica</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Mariano García</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">02</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Ventas</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Luis Pérez</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">UPDATE</div>
+        <br>
+        <p>Esta instrucción nos permite ACTUALIZAR un registro de una tabla.<br>
+        La sintaxis básica y general es la siguiente:<br>
+        UPDATE nombre_tabla SET nom_campo=nuevo_valor WHERE condición;</p>
+        <p>Ejemplo:<br>
+        UPDATE departamento SET Gerente= ‘María Juárez’ WHERE Clave_Dep=01;<br>
+        UPDATE ALUMNO SET EDAD=21 WHERE BOLETA=01</p>
+        <p>Para verificar que los datos fueron correctamente actualizados en una tabla, se usa la instrucción select:<br>
+        select * from departamento;</p>
+        
+        <p>Quedando el resultado de la siguiente forma:</p>
+        <p><b>Departamento</b></p>
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Gerente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">01</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Informatica</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Maria Juarez</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">02</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Ventas</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Luis Pérez</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">DELETE</div>
+        <br>
+        <p>Esta instrucción nos permite ELIMINAR un registro de una tabla.<br>
+        La sintaxis básica y general es la siguiente:<br>
+        DELETE FROM WHERE condición;</p>
+        <p>Ejemplo:<br>
+        DELETE FROM departamento WHERE Clave_Dep=02;<br>
+        DELETE FROM ALUMNO WHERE BOLETA=03</p>
+        <p>Para verificar que los datos fueron correctamente eliminados en una tabla, se usa la instrucción select:<br>
+        select * from departamento;</p>
+        
+        <p>Quedando el resultado de la siguiente forma:</p>
+        <p><b>Departamento</b></p>
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave_Dep</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Gerente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">01</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Informatica</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Maria Juarez</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">SELECT</div>
+        <br>
+        <p>Esta instrucción nos permite CONSULTAR los registros de una tabla o de varias tablas.<br>
+        La sintaxis básica y general es la siguiente:<br>
+        SELECT columnas (requerido)<br>
+        FROM tablas (requerido)<br>
+        WHERE condición (opcional)<br>
+        GROUP BY agrupación (opcional)<br>
+        ORDER BY columnas (opcional);</p>
+
+        <p>Ejemplo:<br>
+        SELECT Nombre_Departameno FROM departamento WHERE Clave_Dep=01;</p>
+
+        <table class="table table-bordered text-center" style="width: 40%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Nom_Departamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Informatica</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><b>CONSULTAS (Sentencia SELECT)</b></p>
+        <ul>
+          <li>El comodín de la selección * (tips)</li>
+          <li>Consultas simples generales</li>
+          <li>Consultas simples específicas (WHERE, AND, OR, NOT)</li>
+          <li>Valores distintos sin repeticiones (DISTINCT)</li>
+          <li>Quiero ordenar mis datos (ORDER BY, ASC, DESC)</li>
+          <li>Las consultas combinadas (INNER JOINS)</li>
+          <li>Otros combos LEFT, RIGHT y FULL OUTER JOIN, UNION</li>
+          <li>Agrupaciones y estadísticas (GROUP BY, HAVING)</li>
+          <li>Será que existe un registro con... (EXISTS)</li>
+          <li>Cómo coloco rangos de condiciones? (BETWEEN...AND)</li>
+          <li>Es algo como... (Expresiones regulares, LIKE)</li>
+          <li>Profundidad de subconsultas (IN)</li>
+        </ul>
+
+        <p><b>Tipos de datos</b></p>
+        <ul>
+          <li>Numéricos: ej. NUMERIC</li>
+          <li>Alfanuméricos: ej. VARCHAR</li>
+          <li>Fecha: ej. timestamp</li>
+          <li>Lógico: ej. BIT</li>
+          <li>BLOB: ej. TEXT</li>
+        </ul>
+
+        <p><b>Operadores</b></p>
+        <ul>
+          <li>Aritméticos: + , - , * , /</li>
+          <li>Relacionales: &lt;, !=, &gt;=</li>
+          <li>Lógicos: and, or, not</li>
+          <li>Concatenación: +</li>
+        </ul>
+
+        <p><b>Funciones Agregadas</b></p>
+        <ul>
+          <li>MAX()</li>
+          <li>MIN()</li>
+          <li>SUM()</li>
+          <li>COUNT()</li>
+          <li>AVG()</li>
+        </ul>
+
+        <p><b>Predicados SQL</b></p>
+        <ul>
+          <li>BETWEEN ... AND</li>
+          <li>LIKE</li>
+          <li>ALL</li>
+          <li>EXISTS</li>
+          <li>IN</li>
+        </ul>
+
+        <p><b>Ejemplos de las funciones agregadas que se utilizan en el select</b></p>
+        <p>La función sum() retorna la suma de los valores que contiene el campo especificado.<br>
+        Ejemplo: Si queremos saber la cantidad total de libros que tenemos disponibles para la venta, debemos sumar todos los valores del campo cantidad, de la tabla de libros, la instrucción quedaría de la siguiente:<br>
+        SELECT sum(cantidad) FROM libros;</p>
+        
+        <p>Para averiguar el valor máximo o mínimo de un campo se usan las funciones max() y min() respectivamente.<br>
+        Por ejemplo se desea saber cuál es el mayor precio de todos los libros:<br>
+        SELECT max(precio) FROM libros;</p>
+        
+        <p>La función avg() retorna el valor promedio de los valores del campo especificado.<br>
+        Ejemplo: se desea saber el promedio del precio de los libros referentes a "PHP":<br>
+        SELECT avg(precio) FROM libros WHERE titulo like '%PHP%';</p>
+        
+        <p>Ahora se puede comprender porque estas funciones se denominan "funciones de agrupamiento", porque operan sobre conjuntos de registros, no con datos individuales.</p>
+
+        <div class="pleca-temas">GROUP BY</div>
+        <br>
+        <p>Las funciones de agregado solas producen un valor de resumen para todos los registros de un campo. Podemos generar valores de resumen para un solo campo, combinando las funciones de agregado con la cláusula group by, que agrupa registros para consultas detalladas.</p>
+        <p>Queremos saber la cantidad de libros de cada editorial, podemos tipear la siguiente sentencia:<br>
+        SELECT count(*) FROM libros WHERE editorial='Planeta';</p>
+        <p>Existe otra forma utilizando la cláusula group by:<br>
+        SELECT editorial, count(*)<br>
+        FROM libros<br>
+        GROUP BY editorial;</p>
+        <p>La instrucción anterior solicita que muestre el nombre de la editorial y cuente la cantidad agrupando los registros por el campo "editorial". Como resultado aparecen los nombres de las editoriales y la cantidad de registros para cada valor del campo.</p>
+
+        <p>Para saber el máximo y mínimo valor de los libros agrupados por editorial:<br>
+        SELECT editorial, max(precio) AS mayor, min(precio) AS menor FROM libros GROUP BY editorial;</p>
+        <p>Para calcular el promedio del valor de los libros agrupados por editorial:<br>
+        SELECT editorial, avg(precio) FROM libros GROUP BY editorial;</p>
+        <p>SELECT editorial, count(*) FROM libros WHERE precio&lt;30 GROUP BY editorial;</p>
+
+        <div class="pleca-temas">ORDER BY</div>
+        <br>
+        <p>Con esta instrucción se puede ordenar el resultado de un select para que los registros se muestren ordenados por algún campo, para ello usamos la cláusula order by.<br>
+        La sintaxis básica es la siguiente:<br>
+        SELECT * FROM nombretabla ORDER BY campo;</p>
+        <p>Por ejemplo, se desea recuperar los registros de la tabla libros ordenados por el título:<br>
+        SELECT * FROM libros ORDER BY titulo;</p>
+        <p>Aparecen los registros ordenados alfabéticamente por el campo especificado.</p>
+
+
+
+
+      <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_22.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="1000" height="800" class="img-fluid"><p class="tx-figura"></p></center>
+
+
+
+
+
+<div class="pleca-temas">DCL</div>
+        <br>
+        <p>Este lenguaje consta de un conjunto de instrucciones que nos sirven para administrar privilegios:</p>
+        <ul>
+          <li><b>GRANT:</b> Autoriza un privilegio sobre un objeto</li>
+          <li><b>REVOKE:</b> Retira un privilegio ya autorizado</li>
+          <li><b>DENY:</b> Negar un privilegio ya autorizado</li>
+        </ul>
+
+        <p><b>Privilegios sobre tablas y vistas a los usuarios:</b></p>
+        <ul>
+          <li>INSERT para agregar nuevos registros</li>
+          <li>DELETE para borrar registros</li>
+          <li>UPDATE para modificar valores de los registros</li>
+          <li>SELECT para efectuar cualquier consulta</li>
+          <li>INDEX para accesar de forma directa y rápida</li>
+          <li>ALTER modificar campos de una tabla</li>
+        </ul>
+
+        <div class="pleca-temas">GRANT</div>
+        <br>
+        <p>Da privilegios sobre un objeto a un usuario<br>
+        GRANT privilegio(s)<br>
+        ON nombre del objeto<br>
+        TO usuario<br>
+        WITH GRANT OPTION</p>
+
+        <p>Ejemplos para dar privilegios al usuario USERID1 sobre la tabla de departamento:<br>
+        GRANT insert, update, select, delete<br>
+        ON departamento<br>
+        TO USERID1</p>
+
+        <p>GRANT insert, select<br>
+        ON departamento<br>
+        TO USERID1</p>
+
+        <p>GRANT *<br>
+        ON departamento<br>
+        TO USERID1</p>
+
+        <p>La cláusula with grant option delega el grant específico (privilegios y objeto) a usuarios para que estos también lo ejecuten.<br>
+        GRANT insert, delete<br>
+        ON departamento<br>
+        TO USERID1<br>
+        WITH GRANT OPTION</p>
+
+        <div class="pleca-temas">REVOKE</div>
+        <br>
+        <p>Retira los privilegios sobre un objeto a un usuario<br>
+        REVOKE privilegio(s)<br>
+        ON nombre del objeto<br>
+        FROM usuario<br>
+        CASCADE</p>
+
+        <p>REVOKE insert, select<br>
+        ON departamento<br>
+        FROM USERID1</p>
+
+        <p>REVOKE *<br>
+        ON departamento<br>
+        FROM USERID1</p>
+
+        <p>La cláusula CASCADE retira en cascada los privilegios otorgados previamente<br>
+        REVOKE insert, select<br>
+        ON departamento<br>
+        FROM USERID1<br>
+        CASCADE</p>
+
+        <p>También se puede usar el DENY para negar privilegios a los usuarios<br>
+        DENY insert, select<br>
+        ON departamento<br>
+        TO USERID1</p>
+
+
+
+
+        <div class="pleca-temas">El proceso de normalización es:</div>
+        <br>
+        <p>a) La división de dos o mas relaciones<br>
+        b) Dividir una relación en dos o más relaciones</p>
+
+        <p><b>Finalidad:</b></p>
+        <ul>
+          <li>Evitar la redundancia de datos</li>
+          <li>La normalización se basa en la Dependencia Funcional (DF)</li>
+        </ul>
+
+        <div class="pleca-temas">DEPENDENCIA FUNCIONAL (DF)</div>
+        <br>
+        <p>Dados dos atributos A y B de una relación R, se dice que B es funcionalmente dependiente si para cada valor de A existe un valor B y solo uno asociado con el.<br>
+        Si en cualquier instante conocido el valor de A podemos conocer el valor de B.<br>
+        La dependencia funcional esta íntimamente ligada con la primary key (PK)</p>
+
+
+
+
+
+          <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_23.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="1000" height="800" class="img-fluid"><p class="tx-figura"></p></center>
+
+
+          <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_24.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="1000" height="800" class="img-fluid"><p class="tx-figura"></p></center>
+
+
+
+<table class="table table-bordered text-center" style="width: 100%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">ID_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">NOM_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">DIR_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">COSTO TRANS_CIUDAD</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_ART</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">DESCRIPCION</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">PRECIO</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">FEC_COM</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">CANTIDAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">SILLA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">200</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">30</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">ESCRITO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">500</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">45</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">RIO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">400</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">20</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">LUIS</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Y</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.20</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">PIZARRO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">500</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">10</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">LUIS</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Y</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.20</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">RIO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">300</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">32</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">PEDRO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Z</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.25</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">ESCRITO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">500</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">43</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">PEDRO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Z</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.25</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">RIO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">300</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">35</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">PEDRO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Z</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.25</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A5</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MESA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">700</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">21</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">ESCRITO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">300</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">38</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">RIO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">300</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">16</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MARIA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">W</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.30</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MESA<br>ANAQUEL<br>MESA<br>MESA<br>SILLA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">200</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15<br>15-OCT-15<br>16-OCT-15<br>16-OCT-15<br>16-OCT-15<br>17-OCT-15<br>17-OCT-15<br>17-OCT-15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">29</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        <p>La anterior relación puede ser implementada en una base de datos<br>
+        Si por qué<br>
+        No por qué<br>
+        No porque hay mucha redundancia de datos<br>
+        Las actualizaciones en la relación no serían correctas<br>
+        No hay un identificador único para un registro</p>
+
+
+          <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_25.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="1000" height="800" class="img-fluid"><p class="tx-figura"></p></center>
+
+
+<p>EMPLEADO(ID_EMP(PK), NOM_EMP, DIR_EMP, COSTO_TRANS_CIUDAD)<br>
+        ARTICULO(CVE_ART(PK),  DESCRIPCION, PRECIO)<br>
+        COMPRA(CVE_COMPRA(PK),  FECHA_COM, CANTIDAD, ID_EMP1(FK),  CVE_ART1(FK))</p>
+
+
+
+          <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad3_files/u3_26.jpg" alt="Figura 15. Flujo de sentencias del Lenguaje de Definición de Datos (LDD)" width="1000" height="800" class="img-fluid"><p class="tx-figura"></p></center>
+
+
+
+
+<div class="pleca-temas">PRIMERA FORMA NORMAL (1FN)</div>
+        <br>
+        <p>Una relación esta en primera forma normal (1FN) si:<br>
+        A) Los dominios de todos los atributos de R son atómicos<br>
+        En otras palabras, la 1FN prohíbe a un campo contener más de un valor de su dominio de columna. Un dominio es atómico si se considera que los elementos de ese dominio son unidades indivisibles.<br>
+        Los atributos compuestos, como el atributo dirección con los componentes Calles y Ciudad, tiene dominios no atómicos<br>
+        B) Todas las tablas deben tener una clave primaria (PK).<br>
+        C) Una tabla no debe tener atributos que acepten valores nulos</p>
+
+
+
+        <div class="pleca-temas">TABLA CON VALORES NO ATÓMICOS (A)</div>
+        <br>
+        <table class="table table-bordered text-center" style="width: 70%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421, 235-6425</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered text-center" style="width: 70%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">235-6425</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">TABLA QUE NO TIENE PRIMARY KEY (B)</div>
+        <br>
+        <table class="table table-bordered text-center" style="width: 60%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered text-center" style="width: 70%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered text-center" style="width: 40%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">235-6425</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">TABLA QUE PERMITE VALORES NULOS (C)</div>
+        <br>
+        <table class="table table-bordered text-center" style="width: 80%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0001</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0002</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">235-6425</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">c0003</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        <div class="pleca-temas">SEGUNDA FORMA NORMAL (2NF)</div>
+        <br>
+        <p>La segunda forma normal (2NF) es una forma normal usada en normalización de bases de datos y fue definida originalmente por E.F. Codd en 1971.</p>
+        <p>Una relación está en 2FN si y solo si:</p>
+        <ul>
+          <li>1.-Está en 1NF.</li>
+          <li>2.-Todos los atributos fuera de la llave primaria son funcionalmente dependientes de la misma de manera completa.</li>
+        </ul>
+
+        <p><b>EJEMPLO</b></p>
+        <table class="table table-bordered text-center" style="width: 70%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #f2f2f2;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">C_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_CLIENTE</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">N_Apellido</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">#_TELEFONO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;"><b>c0001</b></td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Juan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Perez</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">443-6523</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;"><b>c0002</b></td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">274-5421</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;"><b>c0002</b></td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Pedro</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Moreno</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">235-6425</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;"><b>c0003</b></td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Jose</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Quispe</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">542-5344</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+
+        <div class="pleca-temas">ANOMALÍAS EN RELACIONES 2NF</div>
+        <br>
+        <p>Una relación 2FN puede presentar anomalías de almacenamiento si cualquiera de sus no-claves depende transitivamente de la clave primaria.</p>
+        <p>Se dice que una no-clave depende transitivamente de la clave primaria si es funcionalmente dependiente de otra no-clave, en otras palabras, depende indirectamente de la clave principal.</p>
+
+        <p><b>EMPLEADO</b></p>
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #000; color: #fff;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">ID_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">NOM_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">DIR_EMP</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_CD1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">JUAN</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">X</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">LUIS</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Y</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">C2</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">PEDRO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Z</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">E4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MARIA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">W</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><b>CIUDAD</b></p>
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #000; color: #fff;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_CD</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">NOM_CD</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">COSTO_TRANSP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MEXICO</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.17</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">GUADALA</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.20</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">EDO MEX</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.30</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">MONTE</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">.25</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pleca-temas">3ª Forma Normal</div>
+        <br>
+        <p>Una relación es tercera forma normal si:</p>
+        <ul>
+          <li>Es segunda forma normal.</li>
+          <li>Los atributos (columna) no pertenecientes a una clave (primaria o extranjera) son mutuamente independientes funcionalmente</li>
+        </ul>
+
+        <p><b>COMPRA_ARTICULO</b></p>
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #000; color: #fff;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_COM1</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_ART1</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">CANTIDAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">30</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">45</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">20</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">10</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">32</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">43</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">35</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A5</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">21</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">38</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">16</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C5</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">A1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">29</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><b>COMPRA</b></p>
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #000; color: #fff;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">CVE_COM</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">ID_EMP1</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">FEC_COM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">E2</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">E3</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">15-OCT-15</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">E1</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">16-OCT-15</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">C5</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">E4</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">17-OCT-15</td>
+            </tr>
+          </tbody>
+        </table>
 
 
 

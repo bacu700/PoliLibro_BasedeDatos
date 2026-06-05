@@ -94,88 +94,659 @@
        
     </div>
 <br><br>
-        
-      <div class="pleca-temas">4.1. Bases de datos NoSQL</div>
-      <p>&nbsp;</p>
-      <p></p><center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/4_1_banner.jpg" width="720" height="220" alt="Bases de Datos NoSQL"></center><p></p><br>
-      <p>El movimiento NoSQL (Not Only SQL) ha demostrado una enorme utilidad en la ingeniería de software moderna para resolver las limitaciones del modelo relacional tradicional frente al almacenamiento de grandes volúmenes de datos distribuidos, heterogéneos y de alta velocidad. A través de arquitecturas horizontales y esquemas flexibles, estas soluciones permiten modelar y hacer la representación visual de la persistencia de datos en aplicaciones de alta escala.</p>
-<br>
-      <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_18.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">Figura 16. Tipologías de Bases de Datos NoSQL</p></center>
 
-    <p>Las bases de datos NoSQL tienen la finalidad de modelar los requerimientos funcionales de almacenamiento masivo, tomando en cuenta las acciones de lectura y escritura concurrentes que los usuarios ejecutarán al utilizar el sistema. Por lo tanto, este enfoque de almacenamiento permite visualizar y optimizar el comportamiento que el motor de datos debe ejecutar bajo cargas intensas.</p>
-    <p>Los beneficios que se tienen al seleccionar e implementar una base de datos NoSQL están orientados a: la comprensión precisa de la escalabilidad, muestra una composición altamente modular del almacenamiento, ayuda al desarrollo evitando la rigidez de un esquema fijo y aporta una mayor productividad en sistemas que manejan datos semiestructurados o no estructurados, generando un sistema robusto que cubre los requerimientos de la era del Big Data. En los siguientes temas se puntualiza en sus modelos principales.</p>
+<div class="pleca-temas">Principios</div>
+        <br>
+        <p>Modelo de almacenamiento mas simple.<br>
+        Los elementos se almacenan siguiendo una clave ejemplo:<br>
+        {Usuario123: “Paco”} donde Usuario123 seria la CLAVE y Paco el VALOR.<br>
+        Acceso directo por clave.<br>
+        Podríamos tomar la clave como la ID de una tabla relacional solo que al seleccionarla nos daría todo el valor.<br>
+        Sin esquema fijo.<br>
+        Operaciones limitadas.<br>
+        No es posible realizar consultas especializadas como JOIN o filtros a las búsquedas.</p>
+
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_18.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+
+
+
+
+
+
+<div class="pleca-temas">Características</div>
+        <br>
+        <ul>
+          <li><b>Soporte para tipos de datos complejos</b>
+            <ul>
+              <li>El valor puede ir desde un numero entero, texto, numero binario, o inclusive un archivo tipo JSON</li>
+            </ul>
+          </li>
+          <li><b>Claves clasificadas</b>
+            <ul>
+              <li>Un gestor de base de datos tipo clave-valor puede ordenar automáticamente las claves para facilitar la búsqueda.</li>
+            </ul>
+          </li>
+          <li><b>No es estructurada</b>
+            <ul>
+              <li>Al no usar tablas no necesariamente tiene que seguir un orden estricto:</li>
+            </ul>
+          </li>
+        </ul>
+
+        <table class="table table-bordered text-center" style="width: 50%; border: 1px solid #ccc; border-collapse: collapse; margin-bottom: 20px;">
+          <thead style="background-color: #704f65; color: #fff;">
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Clave</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Usuario123</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">“Paco”</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">TotalCarrito</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">1234</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">ArticulosFavoritos</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">&lt;1,45,23&gt;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><i>Se puede observar que la <u>misma BD</u> tiene String, Int y un array de Ids de otra posible BD y es perfectamente <u>valido</u>.</i></p>
+
+        
+
+
+
+
+<div class="pleca-temas">Software:</div>
+        <br>
+        <ul>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
+            </div>
+            <b>Redis</b>
+          </li>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="Amazon DynamoDB Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px; filter: hue-rotate(160deg);">
+            </div>
+            <b>Amazon DynamoDB</b>
+          </li>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://riak.com/content/uploads/2015/06/riak.png" alt="Riak Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
+            </div>
+            <b>Riak</b>
+          </li>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://rocksdb.org/static/logo.svg" alt="RocksDB Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;" onerror="this.src='https://img.icons8.com/color/96/database.png'">
+            </div>
+            <b>RocksDB</b>
+          </li>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://raw.githubusercontent.com/etcd-io/etcd/main/logos/etcd-horizontal-color.svg" alt="etcd Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;" onerror="this.src='https://img.icons8.com/color/96/database.png'">
+            </div>
+            <b>etcd</b>
+          </li>
+          <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px; font-size: 1.2em;">
+            <div style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eee; border-radius: 8px;">
+              <img src="https://www.vectorlogo.zone/logos/memcached/memcached-icon.svg" alt="Memcached Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
+            </div>
+            <b>Memcached</b>
+          </li>
+        </ul>
+
+
+
+<div class="pleca-temas">Operaciones</div>
+        <br>
+        <p>Al no ser una base de datos especializada en consultas complejas, no cuenta con tantas operaciones como una base de datos relacional u otras NoSQL. Este modelo se limita principalmente a 3 operaciones básicas:</p>
+        
+        <ul>
+          <li style="margin-bottom: 8px;"><b>Get (Lectura):</b> Recupera el valor asociado a una clave específica de forma directa y rápida.</li>
+          <li style="margin-bottom: 8px;"><b>Put / Set (Escritura/Actualización):</b> Inserta una nueva clave con su respectivo valor o actualiza el contenido si la clave ya existe.</li>
+          <li style="margin-bottom: 0;"><b>Delete (Eliminación):</b> Remueve por completo la clave y su valor asociado del sistema de almacenamiento.</li>
+        </ul>
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_20.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+
+<div class="pleca-temas">Como usar Redis (Windows)</div>
+        <br>
+        <p>Instalar Docker (<a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>)</p>
+
+        <p>Con Docker instalado ingresamos el siguiente comando en la terminal:</p>
+        <pre><code>docker run -d --name redis -p 6379:6379 redis:latest</code></pre>
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_21.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+
+
+
+
+        <ul>
+          <li style="margin-bottom: 10px;">
+            Ingresamos al redis-cli con el comando:
+            <pre><code>docker exec -it redis redis-cli</code></pre>
+          </li>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_22.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+
+          <li style="margin-bottom: 10px;">
+            Con esto ya estaremos dentro de la BD key-value de Redis y podremos interactuar con ella:
+      
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_23.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+      
+            
+            
+           
+          </li>
+          <li style="margin-bottom: 10px;">Para cerrar la instancia de la terminal solo tenemos que usar la combinación de teclas <b>"Ctrl + c"</b>.</li>
+          <li style="margin-bottom: 10px;">E ingresar el comando para detener el contenedor: <br><code>docker stop redis</code></li>
+          <li style="margin-bottom: 0;">Para activar de nuevo la instancia ingresamos el comando: <br><code>docker start redis</code></li>
+        </ul>
+
+<h2>Ejemplo en Redis</h2>
+
+<p>SET:         set alumno “Axel” </p>
+
+   
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_25.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+      
+      <p>GET:        get alumno</p>
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_26.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
     
-    <h4>4.1.1. Bases de datos clave-valor: Características, arquitectura y modelo</h4>
-
-    <p>El almacenamiento Clave-Valor representa el modelo NoSQL más simplificado y eficiente en términos de velocidad. Basado en una representación directa, asocia un identificador único (clave) con un bloque de datos indeterminado (valor), el cual es completamente transparente para el motor de la base de datos. Esta técnica se utiliza en arquitecturas de alta disponibilidad, permitiendo una rápida recuperación y un nivel de abstracción mínimo en el procesamiento de peticiones.</p>
-    <p>Para implementar un diseño clave-valor eficaz, se parte de la información transaccional proporcionada por los procesos del sistema. Durante el análisis del flujo de datos, se configuran colecciones de datos donde el acceso se realiza exclusivamente a través de su clave indexada, optimizando al máximo operaciones críticas como el manejo de sesiones de usuario o carritos de compra.</p>
-    <p>La arquitectura de este modelo se clasifica por su capacidad de operar directamente en memoria RAM o con persistencia ligera en disco. El modelo lógico está compuesto por diccionarios distribuidos simples, asegurando que los tiempos de respuesta se mantengan constantes sin importar que la base de datos crezca exponencialmente de tamaño.</p>
-    <p>Por otro lado, el modelado físico corresponde al despliegue en nodos distribuidos (clústeres). Esto se gestiona con algoritmos de particionamiento como el hashing consistente, que mapea las llaves uniformemente a través de múltiples servidores para garantizar tolerancia a fallos.</p>
-    <p>Como recordarás, en los sistemas tradicionales la consistencia rígida (ACID) limitaba la velocidad; el modelo clave-valor adopta en su lugar el teorema de CAP, priorizando la disponibilidad y la tolerancia a la partición.</p>
-<br>
+<p>DEL :       del alumno</p>
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_27.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura"></p></center>
+  
+<p>(integer) 1 = ok<br>
+(nil) = null = no existe campo </p>
 
 
-<p>Consulta el siguiente video de un ejemplo de la construcción y funcionamiento de las bases de datos NoSQL clave-valor.</p>
-        <center>
-        <iframe width="361" height="203" src="https://correoipn-my.sharepoint.com/personal/amoralesf1700_alumno_ipn_mx/_layouts/15/embed.aspx?UniqueId=b86dbb88-1d70-42d2-bf20-828a8a9e4ba6&embed=%7B%22pageStartTime%22%3A%222026-05-21T15%3A00%3A00.000Z%22%7D" title="Explicación Básica de Base de Datos Clave-Valor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-          <br>
-        <a href="https://correoipn-my.sharepoint.com/:v:/g/personal/amoralesf1700_alumno_ipn_mx/IQBIZbgPHdIFSb8ggoqekkmKAXoIA_L0VMcZAXIGKdsyLew" target="_blank">https://correoipn-my.sharepoint.com/.../Clave_Valor</a>
-        </center>
-        <br>
-
-    <h4>4.1.2. Bases de datos documentales: Características, arquitectura y modelo</h4>
-        <p>Una excelente práctica en el desarrollo de sistemas con requerimientos de esquemas cambiantes es el uso del almacenamiento documental. Es una evolución del modelo clave-valor donde el "valor" no es un bloque opaco, sino un documento estructurado con una nomenclatura semántica estándar.</p>
-        <p>Este diagrama lógico permite identificar cada entidad de forma independiente, codificando la información comúnmente en formatos legibles como JSON (JavaScript Object Notation) o BSON. Esto significa que el propio motor de la base de datos puede inspeccionar el contenido del documento, permitiendo realizar indexaciones internas y búsquedas complejas por cualquier campo secundario.</p>
-        <p>Los sistemas documentales se componen principalmente de tres elementos esenciales: las colecciones, los documentos y los identificadores únicos (IDs).</p>
-        <p>Las colecciones representan conjuntos de documentos con un propósito similar en el negocio, pero sin la obligación de compartir exactamente las mismas columnas o campos. Considere como ejemplo un <em>“Sistema de comprobación de gastos”</em>: en un modelo relacional tradicional, si un empleado añade un tipo de comprobante imprevisto, la estructura completa de la tabla se rompería.</p>
-        <br>
-        <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_19.jpg" class="img-fluid" alt="Estructura de Colecciones" width="850" height="550">   <p class="tx-figura">Figura 17. Documento JSON utilizado en CouchDB para representar la información del usuario y su dirección.</p></center>
-        <br>
-        <p>El documento en sí representa la fila o registro del negocio. Se caracteriza por su estructura de pares clave-valor anidados y árboles jerárquicos. Un caso de uso típico de este modelo es la gestión de perfiles complejos de usuarios, donde un solo documento almacena de forma embebida tanto la información básica del usuario como sus múltiples direcciones históricas, evitando la necesidad de realizar uniones físicas (JOINs) de tablas. La representación visual de este concepto se detalla en la figura 18.</p>
-        <br>
-        <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_20.jpg" class="img-fluid" alt="Estructura de un Documento" width="850" height="550">  <p class="tx-figura">Figura 18. Anatomía de un Documento JSON</p></center>
-        <br>
+<p>SET sobre la misma clave: </p>
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_27.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">Actualizamos el valor de la misma clave sin importar el formato</p></center>
 
 
-		<p>Consulta el siguiente video de un ejemplo práctico sobre los principios y modelado de las bases de datos NoSQL documentales.</p>
-        <center>
-        <iframe width="361" height="203" src="https://correoipn-my.sharepoint.com/personal/amoralesf1700_alumno_ipn_mx/_layouts/15/embed.aspx?file=%2Fpersonal%2Famoralesf1700%5Falumno%5Fipn%5Fmx%2FDocuments%2FServicio%20Social%20Videos%2FDocumentales%2Emp4&embed=%7B%22pageStartTime%22%3A%222026-05-21T15%3A00%3A00.000Z%22%7D" title="Explicación de Bases de Datos Documentales" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-          <br>
-        <a href="https://correoipn-my.sharepoint.com/personal/amoralesf1700_alumno_ipn_mx/_layouts/15/stream.aspx?id=%2Fpersonal%2Famoralesf1700%5Falumno%5Fipn%5Fmx%2FDocuments%2FServicio%20Social%20Videos%2FDocumentales%2Emp4" target="_blank">https://correoipn-my.sharepoint.com/.../Documentales</a>
-        </center>
+
+
+<p>Get sobre “Alumno” en ves de “alumno”:</p>
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_28.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">Por lo tano “Alumno” no es igual a “alumno”
+</p></center>
+
+
+
+
+
+<p>DEL sobre clave inexistente:</p>
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_29.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">Es 0 pues no ha habido afectación ya que no existe
+
+</p></center>
+
+
+
+<div class="pleca-temas">Conclusiones</div>
         <br>
+        <ul>
+          <li>Son el modelo de almacenamiento más simple.</li>
+          <li>Ofrecen flexibilidad en los tipos de valores pero carecen de un esquema estructurado.</li>
+          <li>Tienen operaciones limitadas, por lo que no son adecuadas para consultas complejas.</li>
+          <li>Son una opción ideal para escenarios de alto rendimiento donde se prioriza la rapidez de acceso sobre la complejidad de las consultas.</li>
+        </ul>
+
+
+
+
+
+
+
+
+
+<div class="pleca-temas">¿Qué es una base de datos documental?</div>
+        <br>
+        <p>Es una base de datos que puede almacenar y consultar datos en documentos tales como:</p>
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_30.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+</p></center>
+
+
+
         
-		
+        <p>Lo mas común es usar JSON o BSON este segundo siendo una forma binaria del primero</p>
 
-		
-        
-      <div class="pleca-temas">4.1.3. Bases de datos orientadas a columnas: Características, arquitectura y modelo</div>
-    <br>    
-    <p>Las bases de datos orientadas a columnas (o de columnas anchas) en el paradigma NoSQL se utilizan para identificar patrones masivos y realizar agregaciones complejas en entornos analíticos (OLAP) y Big Data. Es una representación optimizada de cómo se organizan internamente los archivos en el almacenamiento físico, estructurando los datos en discos de forma contigua por columnas en lugar de por filas tradicionales.</p>
-    <p>Para comprender un diseño orientado a columnas se deben considerar los elementos estructurales que integran su modelo conceptual. La jerarquía de almacenamiento organiza la información desde familias de columnas lógicas hasta celdas individuales provistas de marcas de tiempo automáticas.</p>
-    <center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_27.jpg" class="img-fluid" alt="Estructura de Almacenamiento por Columnas">  <p class="tx-figura">Tabla . Modelo Orientado a Columnas y filas</p></center>
+        <div class="pleca-temas">Principios de las Bases de Datos Documentales</div>
         <br>
- <p>Consulta el siguiente video de un ejemplo práctico sobre las características y el almacenamiento de las bases de datos NoSQL orientadas a columnas.</p>
-        <center>
-        <iframe width="361" height="203" src="https://correoipn-my.sharepoint.com/personal/amoralesf1700_alumno_ipn_mx/_layouts/15/embed.aspx?file=%2Fpersonal%2Famoralesf1700%5Falumno%5Fipn%5Fmx%2FDocuments%2FServicio%20Social%20Videos%2FColumnares%2Emp4&embed=%7B%22pageStartTime%22%3A%222026-05-21T15%3A00%3A00.000Z%22%7D" title="Explicación de Bases de Datos Orientadas a Columnas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-          <br>
-        <a href="https://correoipn-my.sharepoint.com/personal/amoralesf1700_alumno_ipn_mx/_layouts/15/stream.aspx?id=%2Fpersonal%2Famoralesf1700%5Falumno%5Fipn%5Fmx%2FDocuments%2FServicio%20Social%20Videos%2FColumnares%2Emp4" target="_blank">https://correoipn-my.sharepoint.com/.../Columnares</a>
-        </center>
+        <p><b>Modelo orientado a documentos</b></p>
+        <ul>
+          <li>Almacenan datos en formato de documentos (usualmente JSON, BSON, XML).</li>
+          <li>Cada documento representa una unidad de datos completa y autosuficiente.</li>
+        </ul>
+
+        <p><b>Sin esquema rígido (schema-less)</b></p>
+        <ul>
+          <li>Los documentos pueden tener estructuras distintas dentro de la misma colección.</li>
+        </ul>
+
+        <p><b>Escalabilidad horizontal</b></p>
+        <ul>
+          <li>Alta disponibilidad y particionado automático (sharding)</li>
+        </ul>
+
+
+<div class="pleca-temas">Elementos de las Bases de Datos Documentales</div>
         <br>
-		
-		
-		
-		
-		<div class="pleca-temas">4.2. Software y lenguaje para implementar y usar bases de datos NoSQL</div><br>
+        <p>Una base de datos documental está conformada por 3 elementos:</p>
+        <ul>
+          <li><b>Base de Datos</b></li>
+          <li><b>Colecciones</b></li>
+          <li><b>Documentos</b> (generalmente JSON, BSON o XML)</li>
+        </ul>
         
-    <p>La implementación física de un sistema NoSQL requiere seleccionar las soluciones de software adecuadas que respondan lógicamente a las demandas operativas del proyecto. Cada tipo de motor cuenta con sus propios lenguajes de manipulación de datos (DML) adaptados a su arquitectura de consulta. Por ejemplo, en el entorno documental, los desarrolladores utilizan lenguajes declarativos basados en métodos fluidos u objetos de consulta, mientras que en los sistemas orientados a columnas se emplean variantes optimizadas similares a SQL (como CQL en Apache Cassandra), permitiendo realizar consultas eficientes de registros a través de claves de partición.<br>
-      Los componentes que integran el software gestor NoSQL gestionan de manera automatizada la replicación entre nodos de un clúster y la consistencia eventual. El sistema físico pasa por transiciones de sincronización transparente en background, asegurando la resiliencia ante caídas de red.  </p><br>
-         
+        <p>Cada uno de estos elementos está dentro del otro como se muestra en el siguiente diagrama:</p>
+
+        
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_31.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+</p></center>
 
 
-			<p>
+
+<div class="pleca-temas">Documentos JSON</div>
+        <br>
+        <p>JSON viene de JavaScript Object Notation, es un formato ligero, fácil de escribir y leer por los humanos además de simple interpretación y creación para las maquinas.</p>
+        <p>Lo que lo volvió el lenguaje predilecto para el intercambio de datos.</p>
+
+        <p><b>Estructura de JSON</b></p>
+        <p>Está conformado por 2 estructuras:</p>
+        <ul>
+          <li>Una colección de nombre/valor</li>
+          <li>Lista ordenada de valores</li>
+        </ul>
+
+        
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_32.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+</p></center>
+<p>Un objeto es todo aquello que esté dentro de las “{}” (llaves).</p>
+        <p>El nombre siempre será un <b>STRING</b>.</p>
+        
+        <p><b>El valor puede tener distintos tipos de dato:</b></p>
+        <ul>
+          <li><b>Numérico:</b> como en <i>id</i> y <i>age</i></li>
+          <li><b>STRING:</b> como en <i>name</i>, <i>email</i>, <i>gender</i>, <i>city</i>, <i>country</i> y <i>language</i></li>
+          <li><b>Binario (Booleano):</b> como en <i>isActive</i> o <i>newsletter</i></li>
+          <li><b>Arrays:</b> como en <i>roles</i></li>
+        </ul>
 
 
+        <h2>Estructura de JSON</h2>
+        <p>Es posible que el valor también sea de tipo objeto usando un JSON como en el siguiente ejemplo:</p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_33.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p>El nombre “stats” de valor contiene un objeto usando el mismo formato JSON incrustado como valor.</p>
+
+
+<div class="pleca-temas">Características de las Bases de Datos Documentales</div>
+        <br>
+        <ul>
+          <li><b>Flexible:</b> Ya que no necesita de un esquema fijo para el almacenamiento de la información.</li>
+          <li><b>Rápido rendimiento:</b> Optimizado para operaciones masivas de lectura y escritura.</li>
+          <li><b>Escalabilidad horizontal:</b> Diseñado de forma nativa para distribuirse eficientemente en clústeres.</li>
+          <li><b>Soporte para replicación:</b> Alta disponibilidad y tolerancia a fallos mediante la copia de nodos.</li>
+          <li><b>Potente sistema de consultas:</b> Capacidades avanzadas para filtros, frameworks de agregación y búsquedas anidadas.</li>
+        </ul>
+
+        <div class="pleca-temas">Software y lenguajes para su implementación</div>
+        <br>
+        <p>Se puede usar una base de datos documental con los siguientes softwares:</p>
+
+
+<ul>
+          <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB Logo" height="100px">
+            MongoDB
+          </li>
+          <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/couchdb/couchdb-original.svg" alt="CouchDB Logo" height="100px">
+            CouchDB
+          </li>
+          <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+
+          </li>
+          <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="Amazon DocumentDB Logo" height="100px" style="filter: hue-rotate(90deg);">
+            Amazon DocumentDB
+          </li>
+        </ul>
+
+
+
+        <div class="pleca-temas">Cómo instalar MongoDB</div>
+        <br>
+        <p>Existen 2 maneras de instalar MongoDB:</p>
+        <ul>
+          <li><b>Por medio de Docker:</b> Ideal para entornos de desarrollo aislados y rápidos.</li>
+          <li><b>Directamente en el dispositivo:</b> Instalación nativa sobre el sistema operativo local.</li>
+        </ul>
+
+        <p>Independientemente del método elegido, primero instalamos <b>mongosh</b> (MongoDB Shell), lo que nos permitirá interactuar con las bases de datos de forma directa a través de la terminal.</p>
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_34.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+  <p>Continuamos con la instalación de la base de datos. Si decidimos instalarlo por medio de <b>Docker</b>, solo tenemos que ejecutar el siguiente comando en la terminal para descargar la imagen oficial:</p>
+        
+        <p><code>docker pull mongodb/mongodb-community-server:latest</code></p>
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_35.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p>Para ejecutar el contenedor e iniciar la base de datos, solo escribimos el siguiente comando en la terminal:</p>
+        
+        <p><code>docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest</code></p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_36.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+<p>Para poder interactuar con la base de datos usamos el siguiente comando</p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_37.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p>También podemos instalar directamente mongodb en nuestro equipo con la comunity server que nos ofrece mongo</p>
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_38.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<div class="pleca-temas">Operaciones con las Bases de Datos Documentales</div>
+        <br>
+        <p><b>Crear colección en MongoDB por Shell:</b></p>
+        <p>Para crear una nueva colección de forma explícita desde la terminal interactiva (mongosh), se utiliza la siguiente instrucción:</p>
+        
+        <p><code>db.createCollection("Nombre de colección")</code></p>
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_39.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+        <p>Creara la colección donde se guardaran los distintos documentos</p>
+
+
+   <p><b>Ver las colecciones existentes</b></p>
+        
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_40.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p>Muestra las todas las colecciones que tengamos creadas</p>
+<p>Como vimos en los elementos de una base de datos documental es obligatorio crear la colección de lo contrario no podemos crear los documentos</p>
+
+<p><b> Operaciones de la Base de Datos Documentales </b></p>
+<p><b>Insertar un documento:</b></p>
+        <p>Para agregar un único documento a una colección, se utiliza el método <code>insertOne</code>. Cabe destacar que para MongoDB es indiferente si las claves del nombre del atributo están entre comillas ("") o no en la sintaxis de la consola:</p>
+        
+        <p><code>db.nombre_de_coleccion.insertOne({objeto JSON})</code></p>
+
+
+      
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_41.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+      
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_42.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+        <p><b>Insertar varios documentos:</b></p>
+        <p>Si se requiere realizar la inserción de múltiples registros en una sola operación, se pasan los objetos estructurados dentro de un arreglo de JavaScript utilizando <code>insertMany</code>:</p>
+        
+        <p><code>db.nombre_de_coleccion.insertMany([{Objeto JSON 1}, {Objeto JSON 2}, ... , {Objeto JSON n}])</code></p>
+
+    
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_43.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+
+<p><b>Mostrar todos los documentos:</b></p>
+        <p>Para recuperar y visualizar todos los registros existentes dentro de una colección, empleamos el método <code>find</code> con un objeto de filtrado vacío. Esta instrucción funciona exactamente igual que un <code>SELECT * FROM tabla</code> en las bases de datos relacionales:</p>
+        
+        <p><code>db.nombre_de_colección.find({})</code></p>
+
+          
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_44.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p><b>Seleccionar en específico:</b></p>
+        <p>Para realizar una consulta filtrada por un criterio específico, colocamos la clave y el valor que deseamos hacer coincidir dentro del objeto de búsqueda. Esta instrucción funciona exactamente igual que un <code>SELECT * FROM Usuarios WHERE username = 'Javier'</code> en SQL:</p>
+        
+        <p><code>db.nombre_de_colección.find({username: "Javier"})</code></p>
+
+
+
+   
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_45.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+   
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_46.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<p><b>Editar un campo existente del documento:</b></p>
+        <p>Para modificar el valor de un atributo que ya se encuentra registrado en el documento, se utiliza el método <code>updateOne</code> junto con el operador atómico <code>$set</code>. El primer objeto localiza el documento y el segundo define los cambios:</p>
+        
+
+
+   
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_47.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+        <p><code>db.nombre_de_colección.updateOne({nombre_campo: "valor_a_buscar"}, {$set: {campo_a_editar: "nuevo_valor"}})</code></p>
+
+        <p><b>Editar un campo inexistente del documento (Agregar nuevo campo):</b></p>
+        <p>En las bases de datos documentales, si el atributo que se pasa dentro del operador <code>$set</code> no existe previamente en el documento encontrado, MongoDB lo creará e insertará dinámicamente en ese registro sin alterar la estructura de los demás documentos de la colección:</p>
+        
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_48.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+
+
+        <p><code>db.nombre_de_colección.updateOne({nombre_campo: "valor_a_buscar"}, {$set: {campo_inexistente: "valor_del_nuevo_campo"}})</code></p>
+
+
+
+
+<p><b>¿Qué ocurre si al editar no agregamos el parámetro de búsqueda y lo dejamos general?</b></p>
+        <p>A diferencia de SQL, donde omitir la condición <code>WHERE</code> en un <code>UPDATE</code> modifica todos los registros de la tabla, en MongoDB los métodos estándar protegen la colección por defecto:</p>
+        
+        <ul>
+          <li>Si utilizas <b><code>updateOne({}, {$set: {...}})</code></b> con un objeto de búsqueda vacío, MongoDB no arrojará un error, pero <b>solo modificará el primer documento</b> que encuentre en la colección.</li>
+          <li>Si tu intención real es aplicar el cambio de manera general a absolutamente todos los registros de la colección, debes utilizar explícitamente el método <b><code>updateMany</code></b> pasando el filtro vacío:</li>
+        </ul>
+        
+        <p><code>db.nombre_de_colección.updateMany({}, {$set: {campo: "nuevo_valor_general"}})</code></p>
+
+<p><b>¿Qué ocurre si al editar no agregamos el parámetro de búsqueda y lo dejamos general?</b></p>
+  
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_49.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_50.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<p><b>Editar varios documentos:</b></p>
+        <p>Para modificar múltiples registros que cumplan con una misma condición al mismo tiempo, se utiliza el método <code>updateMany</code>. Todos los documentos que coincidan con el parámetro de búsqueda serán actualizados con los valores especificados en el operador <code>$set</code>:</p>
+        
+        <p><code>db.nombre_de_colección.updateMany({parámetro_de_busqueda}, {$set: {nombre_campo: "valor_a_añadir"}})</code></p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_51.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_52.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+<p><b>Comúnmente no queremos editar todos los campos, por eso usamos el parámetro de búsqueda:</b></p>
+        <p>El primer objeto funciona como un filtro (equivalente al <code>WHERE</code> de SQL) para asegurar que la modificación se aplique única y exclusivamente a los documentos que cumplen con dicha condición, protegiendo la integridad del resto de los registros en la colección.</p>
+        
+        <p><code>db.nombre_de_colección.updateMany({parámetro_de_busqueda}, {$set: {nombre_campo: "valor_a_añadir"}})</code></p>
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_53.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_54.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p><b>Eliminar un documento:</b></p>
+        <p>Para suprimir un único registro de la colección, se utiliza el método <code>deleteOne</code>. El sistema buscará el primer documento que coincida con el criterio especificado en el parámetro de búsqueda y lo borrará permanentemente:</p>
+        
+        <p><code>db.nombre_de_colección.deleteOne({parámetro_de_busqueda})</code></p>
+
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_55.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_56.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<p><b>Eliminar varios documentos:</b></p>
+        <p>Para borrar múltiples registros de forma simultánea, se utiliza el método <code>deleteMany</code>. Todos los documentos dentro de la colección que coincidan con el criterio establecido en el parámetro de búsqueda serán eliminados permanentemente:</p>
+        
+        <p><code>db.nombre_de_colección.deleteMany({parámetro_de_busqueda})</code></p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_57.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_58.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+
+<div class="pleca-temas">Operadores </div>
+        <br>
+        <p>Existen distintos operadores lógicos que podemos usar, como <b><code>$and</code></b>, <b><code>$or</code></b> y <b><code>$nor</code></b>, los cuales adquieren exactamente el mismo funcionamiento y comportamiento que las compuertas lógicas tradicionales de su mismo nombre.</p>
+
+        <p>Estos operadores se integran directamente en el parámetro de búsqueda de cualquier operación (como <code>find</code>, <code>updateMany</code> o <code>deleteMany</code>) y nos ayudan a realizar filtros y búsquedas muchísimo más específicas mediante la evaluación de múltiples condiciones.</p>
+
+        <p><b>Sintaxis general:</b></p>
+        <p>A diferencia de los filtros simples, los operadores lógicos reciben como valor un arreglo (denotado por corchetes <code>[]</code>), donde cada elemento es un objeto JSON que representa una condición individual separada por comas:</p>
+
+        <p><code>db.nombre_de_colección.nombre_de_operación({$operador: [{parámetro_de_busqueda_1}, {parámetro_de_busqueda_2}, ... , {parámetro_de_busqueda_n}]})</code></p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_59.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p><b>Operador <code>$and</code>:</b></p>
+        <p>Este operador evalúa que todas las condiciones especificadas dentro del arreglo se cumplan simultáneamente. En este caso, buscará única y exclusivamente a los usuarios que se llamen "Dave" <b>Y</b> que, al mismo tiempo, tengan exactamente la edad de 30 años:</p>
+        
+        <p><code>db.nombre_de_colección.find({$and: [{name: "Dave"}, {age: 30}]})</code></p>
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_60.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p><b>Operador <code>$and</code>:</b></p>
+        <p>Este operador evalúa que todas las condiciones especificadas dentro del arreglo se cumplan simultáneamente. En este caso, buscará única y exclusivamente a los usuarios que se llamen "Dave" <b>Y</b> que, al mismo tiempo, tengan exactamente la edad de 30 años:</p>
+        
+        <p><code>db.nombre_de_colección.find({$and: [{name: "Dave"}, {age: 30}]})</code></p>
+
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_61.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+<p>db.nombre de colección.nombre de operación({$operador:[parámetros de búsqueda (separados por coma)]})</p>
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_62.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+<p>$nor
+buscara a los que NO TENGAN 30 o 22 años</p>
+
+
+<center><img src="Libro%20digital_%20Requerimientos%20de%20Software_unidad4_files/u4_63.jpg" class="img-fluid" alt="Ecosistema NoSQL" width="850" height="550">    <p class="tx-figura">
+
+
+
+
+<div class="pleca-temas">Conclusiones</div>
+        <br>
+        <ul>
+          <li style="margin-bottom: 10px;"><b>Flexibilidad estructural:</b> Las bases de datos documentales permiten almacenar información en documentos autosuficientes, lo que les otorga una enorme flexibilidad al no depender de un esquema rígido o fijo.</li>
+          <li style="margin-bottom: 10px;"><b>Alta disponibilidad:</b> Ofrecen de manera nativa una excelente escalabilidad horizontal y una sólida tolerancia a fallos mediante mecanismos de replicación distribuidos.</li>
+          <li style="margin-bottom: 10px;"><b>Eficiencia operativa:</b> Su modelo orientado a documentos facilita operaciones de lectura y escritura sumamente rápidas, acompañadas de un sistema potente para ejecutar consultas avanzadas y agregaciones.</li>
+          <li style="margin-bottom: 0;"><b>Simplicidad en el desarrollo:</b> Permiten gestionar el ciclo de vida completo de los datos y realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) de forma directa y sencilla mediante objetos JSON/BSON.</li>
+        </ul>
 
 
 

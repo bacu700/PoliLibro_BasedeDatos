@@ -103,13 +103,14 @@
         <div class="row">
             
 
-            
+    <!-- BANNER PRINCIPAL CORREGIDO (APARECE EN PC Y CELULAR) -->
 <div class="d-flex justify-content-center my-4" style="width: 100%;">
-    <div style="position: relative; width: 85%; max-width: 100%; height: 320px;">
+    <div class="banner-container">
         
+        <!-- Quitamos d-none para que la imagen no se esconda en teléfonos -->
         <img src="Libro digital_ Requerimientos de Software_glosario_files/database.jpg" 
              id="menucito1" 
-             class="img-fluid d-lg-block d-md-none d-sm-none d-none" 
+             class="img-fluid" 
              alt="Encabezado de Requerimientos de software" 
              style="
                 width: 100%; 
@@ -120,37 +121,18 @@
                 box-shadow: 0 5px 20px rgba(0,0,0,0.1);
              ">
              
-        <div style="
-            position: absolute;
-            bottom: 25px; /* Un poco más de separación del borde inferior */
-            left: 30px; /* Un poco más de separación del borde izquierdo */
-            color: #ffffff;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9); /* Aumentamos la sombra para letras más grandes */
+        <!-- Este contenedor se adaptará automáticamente gracias a la clase CSS -->
+        <div class="banner-text-block" style="
+            position: absolute; 
+            bottom: 25px; 
+            left: 30px; 
+            color: #ffffff; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9); 
             z-index: 10;
         ">
-            <span style="
-                background-color: #660033; /* Guinda IPN */
-                color: #ffffff;
-                font-size: 40px;
-                font-weight: bold;
-                text-transform: uppercase;
-                padding: 5px 15px;
-                border-radius: 6px;
-                letter-spacing: 1px;
-                display: inline-block;
-                margin-bottom: 10px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            ">📚 Polilibro</span>
-            
-            <h3 style="
-                margin: 0;
-                font-size: 5rem;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-                line-height: 1.1;
-                color: #ffffff;
-            ">Diseño de Bases de Datos</h3>
+            <span class="banner-tag">📚 Polilibro</span>
+            <h3 class="banner-title">Diseño de Bases de Datos</h3>
         </div>
 
     </div>

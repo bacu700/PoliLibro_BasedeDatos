@@ -186,3 +186,36 @@ hr{
 .glosario {
 	list-style: none;
 }
+
+
+
+
+@media (max-width: 767.98px) {
+    /* Forzamos a que el contenedor tenga una altura mínima en cel para que quepa el texto */
+    .banner-container { 
+        width: 100% !important; 
+        height: auto !important; 
+        min-height: 240px !important; 
+    }
+    
+    /* Achicamos la etiqueta guinda */
+    .banner-tag { 
+        font-size: 16px !important; 
+        padding: 4px 10px !important;
+        margin-bottom: 8px !important; 
+    }
+    
+    /* Reducimos el título a un tamaño ideal para celular para que no se fragmente en 5 renglones */
+    .banner-title { 
+        font-size: 1.8rem !important; 
+        line-height: 1.2 !important;
+    }
+    
+    /* En celulares, movemos el texto ligeramente para que no sature los bordes */
+    .banner-text-block { 
+        position: absolute !important;
+        bottom: 15px !important; 
+        left: 15px !important; 
+        right: 15px !important;
+    }
+}
